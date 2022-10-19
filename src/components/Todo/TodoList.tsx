@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import TaskItemList from './TaskItemList';
+import TaskInput from './TaskInput';
 
 import { Task } from './TodoList.interface';
 
@@ -61,10 +62,11 @@ export default function TodoList() {
           toggleComplete={toggleComplete}
           removeTask={removeTask}
         />
-        <form className='input item-line' onSubmit={handleSubmitTask}>
-          <input type='text' value={inputValue} onChange={changeInput}/>
-          <button type='submit'>Add Task</button>
-        </form>
+        <TaskInput 
+          value={inputValue}
+          handleChange={changeInput}
+          handleSubmit={handleSubmitTask}
+        />
       </div>
     </div>
   );

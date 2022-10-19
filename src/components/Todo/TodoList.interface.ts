@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface Task {
     text: string;
     completed: boolean;
@@ -15,4 +17,10 @@ export interface TaskItemProps extends TaskProps {
   
 export interface TaskItemListProps extends TaskProps {
     tasks: Task[];
+}
+
+export interface TaskInputProps {
+    value: string;
+    handleChange: React.ChangeEventHandler<HTMLInputElement>;
+    handleSubmit: React.FormEventHandler<HTMLFormElement>;
 }
