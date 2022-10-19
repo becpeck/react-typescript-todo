@@ -57,7 +57,7 @@ export default function Todo() {
   return (
     <div className='widget-todo container'>
       <h2>To-do List</h2>
-      <button className='clearList' onClick={clearTasks}>Clear All</button>
+      <button className='clear-list' onClick={clearTasks}>Clear All</button>
       <div className='list'>
         {
           tasks.map((item: TaskItem) => {

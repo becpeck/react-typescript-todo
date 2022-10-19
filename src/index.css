@@ -60,3 +60,11 @@ button, input {
 .item-text.complete {
   text-decoration: line-through;
 }
+
+.clear-list {
+  margin-bottom: 1rem;
+}
+
+.input {
+  margin-top: 1rem;
+}
