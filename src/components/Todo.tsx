@@ -2,14 +2,19 @@ import React, {useState} from 'react';
 
 const box = '\u2610';
 const xBox = '\u2612';
-const sampleTasks = [ {text: 'Practice JS'}, 
-                      {text: 'Make lunch'}, 
-                      {text: 'Clean kitchen'}, 
-                      {text: 'Clear desktop'} ];
 
-sampleTasks.forEach(task => {
-  task.completed = false;
-})
+type TaskItem = {
+  text: string;
+  completed: boolean;
+}
+
+const sampleTasks: TaskItem[] = [ 
+  { text: 'TS conversion',  completed: false }, 
+  { text: 'Make lunch',     completed: false }, 
+  { text: 'Clean kitchen',  completed: false }, 
+  { text: 'Finish laundry', completed: false }
+];
+
 
 export default function Todo() {
   const [tasks, setTasks] = useState(sampleTasks);
@@ -18,11 +23,11 @@ export default function Todo() {
     setTasks([]);
   }
 
-  const getClassCompleted = item => {
+  const getClassCompleted = (item: TaskItem) => {
     return item.completed ? 'complete' : ''
   }
   
-  const toggleComplete = itemText => {
+  const toggleComplete = (itemText: TaskItem['text']) => {
     setTasks(tasks.map(task => {
       return task.text === itemText 
         ? {...task, completed: !task.completed} 
@@ -30,7 +35,7 @@ export default function Todo() {
     }));
   }
 
-  const removeTask = itemText => {
+  const removeTask = (itemText: TaskItem['text']) => {
     setTasks(tasks.filter(task => task.text !== itemText));
   }
 
@@ -40,7 +45,7 @@ export default function Todo() {
       <button className='clearList' onClick={clearTasks}>Clear All</button>
       <div className='list'>
         {
-          tasks.map(item => {
+          tasks.map((item: TaskItem) => {
             return (
               <div className={`item-line ${getClassCompleted(item)}`} key={item.text}> {/* TODO: Find better key */}
                 <div className='todo-item'>
