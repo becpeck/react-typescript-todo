@@ -6,7 +6,7 @@ const xBox = '\u2612';
 type TaskItem = {
   text: string;
   completed: boolean;
-}
+};
 
 const sampleTasks: TaskItem[] = [ 
   { text: 'TS conversion',  completed: false }, 
@@ -18,13 +18,16 @@ const sampleTasks: TaskItem[] = [
 
 export default function Todo() {
   const [tasks, setTasks] = useState(sampleTasks);
+  const [inputValue, setInputValue] = useState('');
 
+
+  // Task State functions
   const clearTasks = () => {
     setTasks([]);
   }
 
   const getClassCompleted = (item: TaskItem) => {
-    return item.completed ? 'complete' : ''
+    return item.completed ? 'complete' : '';
   }
   
   const toggleComplete = (itemText: TaskItem['text']) => {
@@ -37,6 +40,18 @@ export default function Todo() {
 
   const removeTask = (itemText: TaskItem['text']) => {
     setTasks(tasks.filter(task => task.text !== itemText));
+  }
+
+  // Input state functions
+  const changeInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = evt.target;
+    setInputValue(value);
+  }
+
+  const handleSubmitTask = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    const newTask: TaskItem = {text: inputValue, completed: false}
+    setTasks([...tasks, newTask])
   }
 
   return (
@@ -61,9 +76,11 @@ export default function Todo() {
             );
           })
         }
+        <form className='input item-line' onSubmit={handleSubmitTask}>
+          <input type='text' value={inputValue} onChange={changeInput}/>
+          <button type='submit'>Add Task</button>
+        </form>
       </div>
-      {/* <input>Ignore</input>
-      <button>Ignore</button> */}
     </div>
   );
 }
