@@ -1,14 +1,19 @@
 import React, {useState} from 'react';
+import TaskItem from './TaskItem';
 
-const box = '\u2610';
-const xBox = '\u2612';
-
-type TaskItem = {
+export type Task = {
   text: string;
   completed: boolean;
 };
 
-const sampleTasks: TaskItem[] = [ 
+export type TaskItemProps = {
+  task: Task;
+  getCompleted: (task: Task) => 'complete' | '';
+  toggleComplete: (itemText: Task['text']) => void;
+  removeTask: (itemText: Task['text']) => void;
+}
+
+const sampleTasks: Task[] = [ 
   { text: 'TS conversion',  completed: false }, 
   { text: 'Make lunch',     completed: false }, 
   { text: 'Clean kitchen',  completed: false }, 
@@ -16,7 +21,7 @@ const sampleTasks: TaskItem[] = [
 ];
 
 
-export default function Todo() {
+export default function TodoList() {
   const [tasks, setTasks] = useState(sampleTasks);
   const [inputValue, setInputValue] = useState('');
 
@@ -26,11 +31,11 @@ export default function Todo() {
     setTasks([]);
   }
 
-  const getClassCompleted = (item: TaskItem) => {
-    return item.completed ? 'complete' : '';
+  const getCompleted = (task: Task) => {
+    return task.completed ? 'complete' : '';
   }
   
-  const toggleComplete = (itemText: TaskItem['text']) => {
+  const toggleComplete = (itemText: Task['text']) => {
     setTasks(tasks.map(task => {
       return task.text === itemText 
         ? {...task, completed: !task.completed} 
@@ -38,7 +43,7 @@ export default function Todo() {
     }));
   }
 
-  const removeTask = (itemText: TaskItem['text']) => {
+  const removeTask = (itemText: Task['text']) => {
     setTasks(tasks.filter(task => task.text !== itemText));
   }
 
@@ -50,7 +55,7 @@ export default function Todo() {
 
   const handleSubmitTask = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const newTask: TaskItem = {text: inputValue, completed: false}
+    const newTask: Task = {text: inputValue, completed: false}
     setTasks([...tasks, newTask])
   }
 
@@ -60,19 +65,15 @@ export default function Todo() {
       <button className='clear-list' onClick={clearTasks}>Clear All</button>
       <div className='list'>
         {
-          tasks.map((item: TaskItem) => {
+          tasks.map((task: Task) => {
             return (
-              <div className={`item-line ${getClassCompleted(item)}`} key={item.text}> {/* TODO: Find better key */}
-                <div className='todo-item'>
-                  <span className='checkbox' onClick={() => {toggleComplete(item.text)}}>
-                    {item.completed ? xBox : box}
-                  </span>
-                  <span className={`item-text ${getClassCompleted(item)}`}>
-                    {item.text}
-                  </span>
-                </div>
-                <button onClick={() => removeTask(item.text)}>Remove</button>
-              </div>
+              <TaskItem
+                key={task.text}
+                task={task} 
+                getCompleted={getCompleted} 
+                toggleComplete={toggleComplete} 
+                removeTask={removeTask}
+              />
             );
           })
         }
