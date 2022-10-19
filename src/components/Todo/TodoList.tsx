@@ -1,16 +1,22 @@
 import React, {useState} from 'react';
-import TaskItem from './TaskItem';
+import TaskItemList from './TaskItemList';
 
 export type Task = {
   text: string;
   completed: boolean;
 };
 
-export type TaskItemProps = {
-  task: Task;
+interface TaskProps {
   getCompleted: (task: Task) => 'complete' | '';
   toggleComplete: (itemText: Task['text']) => void;
   removeTask: (itemText: Task['text']) => void;
+}
+export interface TaskItemProps extends TaskProps {
+  task: Task;
+}
+
+export interface TaskItemListProps extends TaskProps {
+  tasks: Task[];
 }
 
 const sampleTasks: Task[] = [ 
@@ -63,20 +69,13 @@ export default function TodoList() {
     <div className='widget-todo container'>
       <h2>To-do List</h2>
       <button className='clear-list' onClick={clearTasks}>Clear All</button>
-      <div className='list'>
-        {
-          tasks.map((task: Task) => {
-            return (
-              <TaskItem
-                key={task.text}
-                task={task} 
-                getCompleted={getCompleted} 
-                toggleComplete={toggleComplete} 
-                removeTask={removeTask}
-              />
-            );
-          })
-        }
+      <div>
+        <TaskItemList 
+          tasks={tasks}
+          getCompleted={getCompleted}
+          toggleComplete={toggleComplete}
+          removeTask={removeTask}
+        />
         <form className='input item-line' onSubmit={handleSubmitTask}>
           <input type='text' value={inputValue} onChange={changeInput}/>
           <button type='submit'>Add Task</button>
