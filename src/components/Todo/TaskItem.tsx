@@ -1,5 +1,6 @@
 import React from 'react';
-import { TaskItemProps } from './TodoList';
+
+import { TaskItemProps } from './TodoList.interface';
 
 const box = '\u2610';
 const xBox = '\u2612';

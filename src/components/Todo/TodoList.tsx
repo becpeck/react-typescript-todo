@@ -1,23 +1,7 @@
 import React, {useState} from 'react';
 import TaskItemList from './TaskItemList';
 
-export type Task = {
-  text: string;
-  completed: boolean;
-};
-
-interface TaskProps {
-  getCompleted: (task: Task) => 'complete' | '';
-  toggleComplete: (itemText: Task['text']) => void;
-  removeTask: (itemText: Task['text']) => void;
-}
-export interface TaskItemProps extends TaskProps {
-  task: Task;
-}
-
-export interface TaskItemListProps extends TaskProps {
-  tasks: Task[];
-}
+import { Task } from './TodoList.interface';
 
 const sampleTasks: Task[] = [ 
   { text: 'TS conversion',  completed: false }, 
@@ -52,6 +36,7 @@ export default function TodoList() {
   const removeTask = (itemText: Task['text']) => {
     setTasks(tasks.filter(task => task.text !== itemText));
   }
+
 
   // Input state functions
   const changeInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
