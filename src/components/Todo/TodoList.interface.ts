@@ -1,13 +1,15 @@
 import React from "react";
 
+
 export interface Task {
+    id: string;
     text: string;
     completed: boolean;
 }
   
 interface TaskProps {
-    toggleComplete: (itemText: Task['text']) => void;
-    removeTask: (itemText: Task['text']) => void;
+    toggleComplete: (id: Task['id']) => void;
+    removeTask: (id: Task['id']) => void;
 }
 
 export interface TaskItemProps extends TaskProps {
