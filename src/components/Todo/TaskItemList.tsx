@@ -12,7 +12,7 @@ export default function TaskItemList(props: TaskItemListProps) {
         tasks.map((task: Task) => {
           return (
             <TaskItem
-              key={task.text}
+              key={task.id}
               task={task} 
               toggleComplete={toggleComplete} 
               removeTask={removeTask}

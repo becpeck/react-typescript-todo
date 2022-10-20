@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { v4 as uuid } from 'uuid';
 
 import TaskButtons from './TaskButtons';
 import TaskItemList from './TaskItemList';
@@ -6,12 +7,8 @@ import TaskInput from './TaskInput';
 
 import { Task } from './TodoList.interface';
 
-const sampleTasks: Task[] = [ 
-  { text: 'TS conversion',  completed: false }, 
-  { text: 'Make lunch',     completed: false }, 
-  { text: 'Clean kitchen',  completed: false }, 
-  { text: 'Finish laundry', completed: false }
-];
+const sampleTexts: string[] = ['TS conversion', 'Make lunch', 'Clean kitchen', 'Finish laundry'];
+const sampleTasks: Task[] = sampleTexts.map(text => ({ id: uuid(), text, completed: false }));
 
 
 export default function TodoList() {
@@ -32,16 +29,16 @@ export default function TodoList() {
     setTasks([]);
   }
   
-  const toggleComplete = (itemText: Task['text']) => {
+  const toggleComplete = (id: Task['id']) => {
     setTasks(tasks.map(task => {
-      return task.text === itemText 
+      return task.id === id 
         ? {...task, completed: !task.completed} 
         : task;
     }));
   }
 
-  const removeTask = (itemText: Task['text']) => {
-    setTasks(tasks.filter(task => task.text !== itemText));
+  const removeTask = (id: Task['id']) => {
+    setTasks(tasks.filter(task => task.id !== id));
   }
 
 
@@ -53,7 +50,7 @@ export default function TodoList() {
 
   const handleSubmitTask = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const newTask: Task = {text: inputValue, completed: false}
+    const newTask: Task = {id: uuid(), text: inputValue, completed: false}
     setTasks([...tasks, newTask])
   }
 
