@@ -6,7 +6,6 @@ export interface Task {
 }
   
 interface TaskProps {
-    getCompleted: (task: Task) => 'complete' | '';
     toggleComplete: (itemText: Task['text']) => void;
     removeTask: (itemText: Task['text']) => void;
 }

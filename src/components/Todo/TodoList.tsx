@@ -31,10 +31,6 @@ export default function TodoList() {
   const removeAllTasks = () => {
     setTasks([]);
   }
-
-  const getCompleted = (task: Task) => {
-    return task.completed ? 'complete' : '';
-  }
   
   const toggleComplete = (itemText: Task['text']) => {
     setTasks(tasks.map(task => {
@@ -73,7 +69,6 @@ export default function TodoList() {
       <div>
         <TaskItemList 
           tasks={tasks}
-          getCompleted={getCompleted}
           toggleComplete={toggleComplete}
           removeTask={removeTask}
         />

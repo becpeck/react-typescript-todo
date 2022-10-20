@@ -4,7 +4,7 @@ import TaskItem from './TaskItem';
 import { Task, TaskItemListProps } from './TodoList.interface';
 
 export default function TaskItemList(props: TaskItemListProps) {
-  const { tasks, getCompleted, toggleComplete, removeTask } = props;
+  const { tasks, toggleComplete, removeTask } = props;
 
   return(
     <div id='task-list'>
@@ -14,7 +14,6 @@ export default function TaskItemList(props: TaskItemListProps) {
             <TaskItem
               key={task.text}
               task={task} 
-              getCompleted={getCompleted} 
               toggleComplete={toggleComplete} 
               removeTask={removeTask}
             />
