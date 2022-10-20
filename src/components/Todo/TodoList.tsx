@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import TaskButtons from './TaskButtons';
@@ -54,9 +54,18 @@ export default function TodoList() {
     setTasks([...tasks, newTask])
   }
 
+  const sortTasks = () => {
+    const completed = tasks.filter((task) => task.completed)
+    const uncompleted = tasks.filter((task) => !(task.completed))
+    setTasks(uncompleted.concat(completed))
+  }
+
   return (
     <div className='widget-todo container'>
       <h2>To-do List</h2>
+      <div>
+        <button onClick={sortTasks}>Sort</button>
+      </div>
       <TaskButtons 
         tasks={tasks}
         checkAll={checkAllTasks}
