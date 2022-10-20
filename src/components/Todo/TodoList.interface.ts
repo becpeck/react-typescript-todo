@@ -24,3 +24,10 @@ export interface TaskInputProps {
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
     handleSubmit: React.FormEventHandler<HTMLFormElement>;
 }
+
+export interface TaskButtonProps {
+    tasks: Task[];
+    checkAll: () => void;
+    uncheckAll: () => void;
+    removeAll: () => void;
+}

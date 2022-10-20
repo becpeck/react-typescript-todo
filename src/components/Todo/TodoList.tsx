@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+
+import TaskButtons from './TaskButtons';
 import TaskItemList from './TaskItemList';
 import TaskInput from './TaskInput';
 
@@ -18,7 +20,15 @@ export default function TodoList() {
 
 
   // Task State functions
-  const clearTasks = () => {
+  const checkAllTasks = () => {
+    setTasks(tasks.map(task => ({...task, completed: true})));
+  }
+
+  const uncheckAllTasks = () => {
+    setTasks(tasks.map(task => ({...task, completed: false})));
+  }
+
+  const removeAllTasks = () => {
     setTasks([]);
   }
 
@@ -54,7 +64,12 @@ export default function TodoList() {
   return (
     <div className='widget-todo container'>
       <h2>To-do List</h2>
-      <button className='clear-list' onClick={clearTasks}>Clear All</button>
+      <TaskButtons 
+        tasks={tasks}
+        checkAll={checkAllTasks}
+        uncheckAll={uncheckAllTasks}
+        removeAll={removeAllTasks}
+      />
       <div>
         <TaskItemList 
           tasks={tasks}
