@@ -35,7 +35,11 @@ export default function TodoList() {
         ? {...task, completed: !task.completed} 
         : task;
     });
-    updatedTasks = sortOn ? sortTask(id, updatedTasks) : updatedTasks
+    if (sortOn) {
+      const [ toggledTask ] = updatedTasks.filter((task) => task.id === id)
+      updatedTasks = updatedTasks.filter((task) => task.id !== id)
+      updatedTasks = sortTask(toggledTask, updatedTasks)
+    }
     setTasks(updatedTasks)
   }
 
@@ -53,7 +57,8 @@ export default function TodoList() {
   const handleSubmitTask = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const newTask: Task = {id: uuid(), text: inputValue, completed: false}
-    setTasks([...tasks, newTask])
+    const updatedTasks = sortOn ? sortTask(newTask, [...tasks]) : [...tasks, newTask]
+    setTasks(updatedTasks)
   }
 
   // Sort state functions
@@ -70,11 +75,7 @@ export default function TodoList() {
     setTasks(uncompleted.concat(completed))
   }
 
-  const sortTask = (id: Task['id'], tasks: Task[]): Task[] => {
-    const otherTasks = [...tasks]
-    const targetIndex = otherTasks.findIndex((task) => task.id === id)
-    const [ targetTask ] = otherTasks.splice(targetIndex, 1)
-
+  const sortTask = (targetTask: Task, otherTasks: Task[]): Task[] => {
     if (targetTask.completed) {
       return otherTasks.concat(targetTask)
     } else {
