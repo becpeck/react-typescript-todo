@@ -32,3 +32,8 @@ export interface TaskButtonProps {
     uncheckAll: () => void;
     removeAll: () => void;
 }
+
+export interface SortToggleProps {
+    sortOn: boolean;
+    toggleSort: React.ChangeEventHandler<HTMLInputElement>;
+}
