@@ -16,6 +16,7 @@ export default function TodoList() {
   const [tasks, setTasks] = useState(sampleTasks);
   const [inputValue, setInputValue] = useState('');
   const [sortOn, setSortOn] = useState(false);
+  const [inputOpen, setInputOpen] = useState(false);
 
   // Task State functions
   const checkAllTasks = () => {
@@ -62,6 +63,11 @@ export default function TodoList() {
     setTasks(updatedTasks)
   }
 
+  const toggleInputOpen = () => {
+    setInputOpen(!inputOpen)
+  }
+
+
   // Sort state functions
   const toggleSort = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setSortOn(evt.target.checked)
@@ -107,6 +113,8 @@ export default function TodoList() {
         />
         <TaskInput 
           value={inputValue}
+          isOpen={inputOpen}
+          toggleOpen={toggleInputOpen}
           handleChange={changeInput}
           handleSubmit={handleSubmitTask}
         />

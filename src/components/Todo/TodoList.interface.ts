@@ -22,6 +22,8 @@ export interface TaskItemListProps extends TaskProps {
 
 export interface TaskInputProps {
     value: string;
+    isOpen: boolean;
+    toggleOpen: () => void;
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
     handleSubmit: React.FormEventHandler<HTMLFormElement>;
 }
