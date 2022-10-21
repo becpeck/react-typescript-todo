@@ -76,16 +76,12 @@ export default function TodoList() {
   }
 
   const sortTask = (targetTask: Task, otherTasks: Task[]): Task[] => {
-    if (targetTask.completed) {
-      return otherTasks.concat(targetTask)
+    if (!targetTask.completed && otherTasks.every((task) => task.completed)) {
+      return [targetTask].concat(otherTasks)
     } else {
-      if (otherTasks.every((task) => task.completed)) {
-        return [targetTask].concat(otherTasks)
-      } else {
-        const completed = otherTasks.filter((task) => task.completed)
-        const uncompleted = otherTasks.filter((task) => !(task.completed))
-        return uncompleted.concat(targetTask, completed)
-      }
+      const completed = otherTasks.filter((task) => task.completed)
+      const uncompleted = otherTasks.filter((task) => !(task.completed))
+      return uncompleted.concat(targetTask, completed)
     }
   }
 
