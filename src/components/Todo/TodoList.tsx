@@ -14,7 +14,7 @@ const sampleTasks: Task[] = sampleTexts.map(text => ({ id: uuid(), text, complet
 export default function TodoList() {
   const [tasks, setTasks] = useState(sampleTasks);
   const [inputValue, setInputValue] = useState('');
-
+  const [sortOn, setSortOn] = useState(false);
 
   // Task State functions
   const checkAllTasks = () => {
@@ -54,6 +54,14 @@ export default function TodoList() {
     setTasks([...tasks, newTask])
   }
 
+  // Sort state functions
+  const toggleSort = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setSortOn(evt.target.checked)
+    if (evt.target.checked) {
+      sortTasks()
+    }
+  }
+
   const sortTasks = () => {
     const completed = tasks.filter((task) => task.completed)
     const uncompleted = tasks.filter((task) => !(task.completed))
@@ -64,7 +72,10 @@ export default function TodoList() {
     <div className='widget-todo container'>
       <h2>To-do List</h2>
       <div>
-        <button onClick={sortTasks}>Sort</button>
+        <label>
+          <input type="checkbox" name="sort" checked={sortOn} onChange={toggleSort}/>
+          Sort
+        </label>
       </div>
       <TaskButtons 
         tasks={tasks}
