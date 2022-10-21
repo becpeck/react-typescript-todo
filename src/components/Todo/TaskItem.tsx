@@ -11,7 +11,7 @@ export default function TaskItem(props: TaskItemProps) {
   const getCompleteClass = (task: Task) => (task.completed ? 'complete' : '');
 
   return (
-    <div className={`item-line ${getCompleteClass(task)}`} key={task.id}>
+    <div className={`item-line ${getCompleteClass(task)}`}>
       <div className='todo-item'>
         <span className='checkbox' onClick={() => {toggleComplete(task.id)}}>
           {task.completed ? xBox : box}
