@@ -30,11 +30,13 @@ export default function TodoList() {
   }
   
   const toggleComplete = (id: Task['id']) => {
-    setTasks(tasks.map(task => {
+    let updatedTasks = tasks.map(task => {
       return task.id === id 
         ? {...task, completed: !task.completed} 
         : task;
-    }));
+    });
+    updatedTasks = sortOn ? sortTask(id, updatedTasks) : updatedTasks
+    setTasks(updatedTasks)
   }
 
   const removeTask = (id: Task['id']) => {
@@ -66,6 +68,24 @@ export default function TodoList() {
     const completed = tasks.filter((task) => task.completed)
     const uncompleted = tasks.filter((task) => !(task.completed))
     setTasks(uncompleted.concat(completed))
+  }
+
+  const sortTask = (id: Task['id'], tasks: Task[]): Task[] => {
+    const otherTasks = [...tasks]
+    const targetIndex = otherTasks.findIndex((task) => task.id === id)
+    const [ targetTask ] = otherTasks.splice(targetIndex, 1)
+
+    if (targetTask.completed) {
+      return otherTasks.concat(targetTask)
+    } else {
+      if (otherTasks.every((task) => task.completed)) {
+        return [targetTask].concat(otherTasks)
+      } else {
+        const completed = otherTasks.filter((task) => task.completed)
+        const uncompleted = otherTasks.filter((task) => !(task.completed))
+        return uncompleted.concat(targetTask, completed)
+      }
+    }
   }
 
   return (
