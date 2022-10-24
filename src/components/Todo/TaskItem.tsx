@@ -4,6 +4,9 @@ import { Task, TaskItemProps } from './TodoList.interface';
 
 const box = '\u2610';
 const xBox = '\u2612';
+const x = '\u2715';
+const pencil = '\u270F';
+const check = '\u2713';
 
 export default function TaskItem(props: TaskItemProps) {
   const { task, toggleComplete, removeTask } = props;
@@ -20,7 +23,13 @@ export default function TaskItem(props: TaskItemProps) {
           {task.text}
         </span>
       </div>
-      <button onClick={() => removeTask(task.id)}>Remove</button>
+      <div className='todo-item-buttons'>
+        {task.editOn ?
+          <span className='check'>{check}</span>
+        : <span className='pencil'>{pencil}</span>
+        }
+        <span className='x-remove' onClick={() => removeTask(task.id)}>{x}</span>
+      </div>
     </div>
   );
 }

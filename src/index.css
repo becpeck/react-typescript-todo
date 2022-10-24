@@ -137,3 +137,18 @@ button, input {
 .plus {
   font-size: 120%;
 }
+
+/* Edit task */
+.todo-item-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.pencil {
+  transform: scaleX(-1);
+  font-size: 120%;
+}
+
+.x-remove {
+  padding-left: 1rem;
+}
