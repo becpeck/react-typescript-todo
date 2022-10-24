@@ -9,7 +9,7 @@ import SortToggle from './SortToggle'
 import { Task } from './TodoList.interface';
 
 const sampleTexts: string[] = ['TS conversion', 'Make lunch', 'Clean kitchen', 'Finish laundry'];
-const sampleTasks: Task[] = sampleTexts.map(text => ({ id: uuid(), text, completed: false }));
+const sampleTasks: Task[] = sampleTexts.map(text => ({ id: uuid(), text, completed: false, editOn: false }));
 
 
 export default function TodoList() {
@@ -58,7 +58,7 @@ export default function TodoList() {
 
   const handleSubmitTask = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const newTask: Task = {id: uuid(), text: inputValue, completed: false}
+    const newTask: Task = {id: uuid(), text: inputValue, completed: false, editOn: false}
     const updatedTasks = sortOn ? sortTask(newTask, [...tasks]) : [...tasks, newTask]
     setTasks(updatedTasks)
   }

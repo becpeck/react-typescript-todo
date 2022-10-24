@@ -5,6 +5,7 @@ export interface Task {
     id: string;
     text: string;
     completed: boolean;
+    editOn: boolean;
 }
   
 interface TaskProps {
