@@ -28,7 +28,7 @@ export default function TaskItem(props: TaskItemProps) {
       </div>
       <div className='todo-item-buttons'>
         {task.editOn ?
-          <span className='check'>{check}</span> // TODO: Fix width/weight difference
+          <span className='check' onClick={() => toggleEditOn(task.id)}>{check}</span> // TODO: Fix width/weight difference
         : <span className='pencil' onClick={() => toggleEditOn(task.id)}>{pencil}</span>
         }
         <span className='x-remove' onClick={() => removeTask(task.id)}>{x}</span>
