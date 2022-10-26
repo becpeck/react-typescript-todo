@@ -45,7 +45,7 @@ button, input {
 .todo-item {
   display: flex;
   align-items: center;
-  padding-right: 2rem;
+  padding-right: 1rem;
 }
 
 .checkbox {
@@ -160,4 +160,5 @@ button, input {
   border: none;
   padding: 0;
   outline: none;
+  color: inherit;
 }

@@ -27,17 +27,15 @@ export default function TaskItem(props: TaskItemProps) {
         <span className='checkbox' onClick={() => toggleComplete(task.id)}>
           {task.completed ? xBox : box}
         </span>
-        {task.editOn ?
-          <input 
-            type='text' 
-            value={task.text} 
-            onChange={handleChange(task.id)} 
-            ref={activeInput}
-          /> // TODO: Fix size issue
-        : <span className={`item-text ${getCompleteClass(task)}`}>
-            {task.text}
-          </span>
-        }
+        <input
+          type='text'
+          value={task.text}
+          onChange={handleChange(task.id)}
+          ref={activeInput}
+          className={`item-text ${getCompleteClass(task)}`}
+          style={{width: task.text.length + 2 + 'ch'}} // TODO: move to css component library
+          readOnly={!task.editOn}
+        />
       </div>
       <div className='todo-item-buttons'>
         {task.editOn ?
