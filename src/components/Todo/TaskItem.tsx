@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import { Task, TaskItemProps } from './TodoList.interface';
 
@@ -11,6 +11,14 @@ const check = '\u2713';
 export default function TaskItem(props: TaskItemProps) {
   const { task, toggleComplete, removeTask, toggleEditOn, handleChange } = props;
 
+  // TODO: see how to trigger toggleEdit on input blur without preventing other UI interaction
+  // TODO: move to higher component, only one possible input open at once
+  const activeInput = useRef<HTMLInputElement>(null);
+  
+  useEffect(() => {
+    activeInput.current?.focus()
+  }, [activeInput, task.editOn])
+  
   const getCompleteClass = (task: Task) => (task.completed ? 'complete' : '');
 
   return (
@@ -20,7 +28,12 @@ export default function TaskItem(props: TaskItemProps) {
           {task.completed ? xBox : box}
         </span>
         {task.editOn ?
-          <input type='text' value={task.text} onChange={handleChange(task.id)}/> // TODO: Fix size issue
+          <input 
+            type='text' 
+            value={task.text} 
+            onChange={handleChange(task.id)} 
+            ref={activeInput}
+          /> // TODO: Fix size issue
         : <span className={`item-text ${getCompleteClass(task)}`}>
             {task.text}
           </span>
