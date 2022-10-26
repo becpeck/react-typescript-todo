@@ -9,18 +9,18 @@ const pencil = '\u270F';
 const check = '\u2713';
 
 export default function TaskItem(props: TaskItemProps) {
-  const { task, toggleComplete, removeTask } = props;
+  const { task, toggleComplete, removeTask, toggleEditOn, handleChange } = props;
 
   const getCompleteClass = (task: Task) => (task.completed ? 'complete' : '');
 
   return (
     <div className={`item-line ${getCompleteClass(task)}`}>
       <div className='todo-item'>
-        <span className='checkbox' onClick={() => {toggleComplete(task.id)}}>
+        <span className='checkbox' onClick={() => toggleComplete(task.id)}>
           {task.completed ? xBox : box}
         </span>
         {task.editOn ?
-          <input type='text' value={task.text}></input> // TODO: Fix size issue
+          <input type='text' value={task.text} onChange={handleChange(task.id)}/> // TODO: Fix size issue
         : <span className={`item-text ${getCompleteClass(task)}`}>
             {task.text}
           </span>
@@ -29,7 +29,7 @@ export default function TaskItem(props: TaskItemProps) {
       <div className='todo-item-buttons'>
         {task.editOn ?
           <span className='check'>{check}</span> // TODO: Fix width/weight difference
-        : <span className='pencil'>{pencil}</span>
+        : <span className='pencil' onClick={() => toggleEditOn(task.id)}>{pencil}</span>
         }
         <span className='x-remove' onClick={() => removeTask(task.id)}>{x}</span>
       </div>

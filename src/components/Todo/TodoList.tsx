@@ -48,6 +48,22 @@ export default function TodoList() {
   const removeTask = (id: Task['id']) => {
     setTasks(tasks.filter(task => task.id !== id));
   }
+  
+  const toggleEditTask = (id: Task['id']) => {
+    setTasks(tasks.map(task => (
+      task.id === id
+        ? {...task, editOn: !task.editOn}
+        : task
+    )));
+  }
+
+  const handleChangeTask = (id: Task['id']) => (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setTasks(tasks.map(task => (
+      task.id === id
+        ? {...task, text: evt.target.value}
+        : task
+    )));
+  }
 
 
   // Input state functions
@@ -110,6 +126,8 @@ export default function TodoList() {
           tasks={tasks}
           toggleComplete={toggleComplete}
           removeTask={removeTask}
+          toggleEditOn={toggleEditTask}
+          handleChange={handleChangeTask}
         />
         <TaskInput 
           value={inputValue}
