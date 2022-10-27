@@ -9,7 +9,7 @@ import SortToggle from './SortToggle'
 import { Task } from './TodoList.interface';
 
 const sampleTexts: string[] = ['TS conversion', 'Make lunch', 'Clean kitchen', 'Finish laundry'];
-const sampleTasks: Task[] = sampleTexts.map(text => ({ id: uuid(), text, completed: false }));
+const sampleTasks: Task[] = sampleTexts.map(text => ({ id: uuid(), text, completed: false, editOn: false }));
 
 
 export default function TodoList() {
@@ -49,6 +49,27 @@ export default function TodoList() {
     setTasks(tasks.filter(task => task.id !== id));
   }
 
+  const toggleEditTask = (id: Task['id']) => {
+    setTasks(tasks.map(task => (
+      task.id === id
+        ? {...task, editOn: !task.editOn}
+        : task
+    )));
+  }
+
+  const handleChangeTask = (id: Task['id']) => (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setTasks(tasks.map(task => (
+      task.id === id
+        ? {...task, text: evt.target.value}
+        : task
+    )));
+  }
+
+  const handleSubmitEdit = (id: Task['id']) => (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    toggleEditTask(id);
+  }
+
 
   // Input state functions
   const changeInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +79,7 @@ export default function TodoList() {
 
   const handleSubmitTask = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const newTask: Task = {id: uuid(), text: inputValue, completed: false}
+    const newTask: Task = {id: uuid(), text: inputValue, completed: false, editOn: false}
     const updatedTasks = sortOn ? sortTask(newTask, [...tasks]) : [...tasks, newTask]
     setTasks(updatedTasks)
   }
@@ -110,6 +131,9 @@ export default function TodoList() {
           tasks={tasks}
           toggleComplete={toggleComplete}
           removeTask={removeTask}
+          toggleEditOn={toggleEditTask}
+          handleChange={handleChangeTask}
+          handleSubmit={handleSubmitEdit}
         />
         <TaskInput 
           value={inputValue}
