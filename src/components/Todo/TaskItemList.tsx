@@ -4,7 +4,7 @@ import TaskItem from './TaskItem';
 import { Task, TaskItemListProps } from './TodoList.interface';
 
 export default function TaskItemList(props: TaskItemListProps) {
-  const { tasks, toggleComplete, removeTask, toggleEditOn, handleChange } = props;
+  const { tasks, toggleComplete, removeTask, toggleEditOn, handleChange, handleSubmit } = props;
 
   return(
     <div id='task-list'>
@@ -18,6 +18,7 @@ export default function TaskItemList(props: TaskItemListProps) {
               removeTask={removeTask}
               toggleEditOn={toggleEditOn}
               handleChange={handleChange}
+              handleSubmit={handleSubmit}
             />
           );
         })

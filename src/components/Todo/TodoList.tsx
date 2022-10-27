@@ -48,7 +48,7 @@ export default function TodoList() {
   const removeTask = (id: Task['id']) => {
     setTasks(tasks.filter(task => task.id !== id));
   }
-  
+
   const toggleEditTask = (id: Task['id']) => {
     setTasks(tasks.map(task => (
       task.id === id
@@ -63,6 +63,11 @@ export default function TodoList() {
         ? {...task, text: evt.target.value}
         : task
     )));
+  }
+
+  const handleSubmitEdit = (id: Task['id']) => (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    toggleEditTask(id);
   }
 
 
@@ -128,6 +133,7 @@ export default function TodoList() {
           removeTask={removeTask}
           toggleEditOn={toggleEditTask}
           handleChange={handleChangeTask}
+          handleSubmit={handleSubmitEdit}
         />
         <TaskInput 
           value={inputValue}

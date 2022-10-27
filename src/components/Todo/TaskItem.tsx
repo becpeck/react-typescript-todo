@@ -6,12 +6,10 @@ const box = '\u2610';
 const xBox = '\u2612';
 const x = '\u2715';
 const pencil = '\u270F';
-const check = '\u2713';
 
 export default function TaskItem(props: TaskItemProps) {
-  const { task, toggleComplete, removeTask, toggleEditOn, handleChange } = props;
+  const { task, toggleComplete, removeTask, toggleEditOn, handleChange, handleSubmit } = props;
 
-  // TODO: see how to trigger toggleEdit on input blur without preventing other UI interaction
   // TODO: move to higher component, only one possible input open at once
   const activeInput = useRef<HTMLInputElement>(null);
   
@@ -27,20 +25,22 @@ export default function TaskItem(props: TaskItemProps) {
         <span className='checkbox' onClick={() => toggleComplete(task.id)}>
           {task.completed ? xBox : box}
         </span>
-        <input
-          type='text'
-          value={task.text}
-          onChange={handleChange(task.id)}
-          ref={activeInput}
-          className={`item-text ${getCompleteClass(task)}`}
-          style={{width: task.text.length + 2 + 'ch'}} // TODO: move to css component library
-          readOnly={!task.editOn}
-        />
+        <form onSubmit={handleSubmit(task.id)}>
+          <input
+            type='text'
+            value={task.text}
+            onChange={handleChange(task.id)}
+            ref={activeInput}
+            className={`item-text ${getCompleteClass(task)}`}
+            style={{width: task.text.length + 2 + 'ch'}} // TODO: move to css component library
+            readOnly={!task.editOn}
+            onBlur={() => task.editOn && toggleEditOn(task.id)}
+          />
+        </form>
       </div>
       <div className='todo-item-buttons'>
-        {task.editOn ?
-          <span className='check' onClick={() => toggleEditOn(task.id)}>{check}</span> // TODO: Fix width/weight difference
-        : <span className='pencil' onClick={() => toggleEditOn(task.id)}>{pencil}</span>
+        {!task.editOn &&
+          <span className='pencil' onClick={() => toggleEditOn(task.id)}>{pencil}</span>
         }
         <span className='x-remove' onClick={() => removeTask(task.id)}>{x}</span>
       </div>
