@@ -35,6 +35,11 @@ button, input {
   flex-wrap: wrap;
 }
 
+.list-buttons {
+  margin-bottom: 1rem;
+}
+
+/* Task items */
 .item-line {
   display: flex;
   flex-flow: row nowrap;
@@ -49,7 +54,7 @@ button, input {
 }
 
 .checkbox {
-  padding-right: 1rem;
+  margin-right: 0.25rem;
   font-size: 150%;
 }
 
@@ -61,8 +66,51 @@ button, input {
   text-decoration: line-through;
 }
 
-.list-buttons {
-  margin-bottom: 1rem;
+/* Edit task */
+.todo-item-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.pencil {
+  transform: scaleX(-1);
+  font-size: 120%;
+}
+
+.x-remove {
+  margin-left: 0.25rem;
+}
+
+.pencil, .x-remove, .checkbox, .no-pencil {
+  width: 29.5px;
+  height: 29.5px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.pencil:hover, .x-remove:hover, .checkbox:hover {
+  background-color: #EFEFEF;
+}
+
+.pencil:active, .x-remove:active, .checkbox:active {
+  background-color: #D2D2D2;
+}
+
+.item-line input, .item-line input:focus {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  border-radius: 0.9em;
+  padding: 0 0.5rem;
+  outline: none;
+  color: inherit;
+}
+
+.item-line.edit input:focus {
+  background-color: #EFEFEF;
 }
 
 /* Sort toggle switch */
@@ -136,29 +184,4 @@ button, input {
 
 .plus {
   font-size: 120%;
-}
-
-/* Edit task */
-.todo-item-buttons {
-  display: flex;
-  align-items: center;
-}
-
-.pencil {
-  transform: scaleX(-1);
-  font-size: 120%;
-}
-
-.x-remove {
-  padding-left: 1rem;
-}
-
-.item-line input, .item-line input:focus {
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  border: none;
-  padding: 0;
-  outline: none;
-  color: inherit;
 }

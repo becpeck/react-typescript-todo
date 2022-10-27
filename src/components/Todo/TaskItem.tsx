@@ -19,8 +19,10 @@ export default function TaskItem(props: TaskItemProps) {
   
   const getCompleteClass = (task: Task) => (task.completed ? 'complete' : '');
 
+  const getEditOnClass = (task: Task) => (task.editOn ? 'edit' : '');
+
   return (
-    <div className={`item-line ${getCompleteClass(task)}`}>
+    <div className={`item-line ${getCompleteClass(task)} ${getEditOnClass(task)}`}>
       <div className='todo-item'>
         <span className='checkbox' onClick={() => toggleComplete(task.id)}>
           {task.completed ? xBox : box}
@@ -39,8 +41,9 @@ export default function TaskItem(props: TaskItemProps) {
         </form>
       </div>
       <div className='todo-item-buttons'>
-        {!task.editOn &&
-          <span className='pencil' onClick={() => toggleEditOn(task.id)}>{pencil}</span>
+        {task.editOn ?
+          <span className='no-pencil'></span>
+        : <span className='pencil' onClick={() => toggleEditOn(task.id)}>{pencil}</span>
         }
         <span className='x-remove' onClick={() => removeTask(task.id)}>{x}</span>
       </div>
