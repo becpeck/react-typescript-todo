@@ -6,15 +6,16 @@ import TaskItemList from './TaskItemList';
 import TaskInput from './TaskInput';
 import SortToggle from './SortToggle'
 
-import { Task } from './TodoList.interface';
+import { Task, NewTask } from './TodoList.interface';
 
 const sampleTexts: string[] = ['TS conversion', 'Make lunch', 'Clean kitchen', 'Finish laundry'];
 const sampleTasks: Task[] = sampleTexts.map(text => ({ id: uuid(), text, completed: false, editOn: false }));
+const initialNewTaskInput: NewTask = { text: '', editOn: false }
 
 
 export default function TodoList() {
   const [tasks, setTasks] = useState(sampleTasks);
-  const [inputValue, setInputValue] = useState('');
+  const [newTaskInput, setNewTaskInput] = useState(initialNewTaskInput);
   const [sortOn, setSortOn] = useState(false);
 
   // Task State functions
@@ -71,17 +72,21 @@ export default function TodoList() {
 
 
   // Input state functions
+  const toggleEditInput = () => {
+    setNewTaskInput({...newTaskInput, editOn: !newTaskInput.editOn})
+  }
+
   const changeInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = evt.target;
-    setInputValue(value);
+    setNewTaskInput({...newTaskInput, text: value});
   }
 
   const handleSubmitTask = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const newTask: Task = {id: uuid(), text: inputValue, completed: false, editOn: false}
+    const newTask: Task = {id: uuid(), text: newTaskInput.text, completed: false, editOn: false}
     const updatedTasks = sortOn ? sortTask(newTask, [...tasks]) : [...tasks, newTask]
     setTasks(updatedTasks)
-    setInputValue('')
+    setNewTaskInput(initialNewTaskInput)
   }
 
 
@@ -132,7 +137,8 @@ export default function TodoList() {
           handleSubmit={handleSubmitEdit}
         />
         <TaskInput 
-          value={inputValue}
+          newTaskInput={newTaskInput}
+          toggleEditOn={toggleEditInput}
           handleChange={changeInput}
           handleSubmit={handleSubmitTask}
         />

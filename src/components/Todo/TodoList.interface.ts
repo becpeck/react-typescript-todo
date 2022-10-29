@@ -1,11 +1,13 @@
 import React from "react";
 
-
-export interface Task {
-    id: string;
+export interface NewTask {
     text: string;
-    completed: boolean;
     editOn: boolean;
+}
+
+export interface Task extends NewTask {
+    id: string;
+    completed: boolean;
 }
   
 interface TaskProps {
@@ -25,7 +27,8 @@ export interface TaskItemListProps extends TaskProps {
 }
 
 export interface TaskInputProps {
-    value: string;
+    newTaskInput: NewTask;
+    toggleEditOn: () => void;
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
     handleSubmit: React.FormEventHandler<HTMLFormElement>;
 }
