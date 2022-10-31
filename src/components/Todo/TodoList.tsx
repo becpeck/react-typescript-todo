@@ -76,13 +76,12 @@ export default function TodoList() {
     setNewTaskInput({...newTaskInput, editOn: !newTaskInput.editOn})
   }
 
-  const changeInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = evt.target;
     setNewTaskInput({...newTaskInput, text: value});
   }
 
-  const handleSubmitTask = (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
+  const addNewTask = () => {
     const newTask: Task = {id: uuid(), text: newTaskInput.text, completed: false, editOn: false}
     const updatedTasks = sortOn ? sortTask(newTask, [...tasks]) : [...tasks, newTask]
     setTasks(updatedTasks)
@@ -139,8 +138,8 @@ export default function TodoList() {
         <TaskInput 
           newTaskInput={newTaskInput}
           toggleEditOn={toggleEditInput}
-          handleChange={changeInput}
-          handleSubmit={handleSubmitTask}
+          handleChange={handleChangeInput}
+          addNewTask={addNewTask}
         />
       </div>
     </div>

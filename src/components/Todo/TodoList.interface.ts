@@ -30,7 +30,7 @@ export interface TaskInputProps {
     newTaskInput: NewTask;
     toggleEditOn: () => void;
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
-    handleSubmit: React.FormEventHandler<HTMLFormElement>;
+    addNewTask: () => void;
 }
 
 export interface TaskButtonProps {
