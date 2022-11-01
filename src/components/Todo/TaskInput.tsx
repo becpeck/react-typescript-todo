@@ -4,6 +4,7 @@ import { TaskInputProps } from './TodoList.interface';
 
 const box = '\u2610';
 const pencil = '\u270F';
+const plus = '\uFF0B';
 
 export default function TaskInput(props: TaskInputProps) {
   const { text, editOn } = props.newTaskInput;
@@ -35,8 +36,8 @@ export default function TaskInput(props: TaskInputProps) {
     }
   }
 
-  return (
-  <form className={`item-line ${getEditOnClass()}`} ref={form} onSubmit={handleSubmit}>
+  return ( // TODO: fix className whitespace
+  <form className={`item-line task-input ${getEditOnClass()}`} ref={form} onSubmit={handleSubmit}>
     <div className='todo-item'>
       <span className='checkbox'>
         {box}
@@ -54,6 +55,7 @@ export default function TaskInput(props: TaskInputProps) {
     <div className='todo-item-buttons'>
       {!editOn && <span className='pencil' onClick={handlePencilClick}>{pencil}</span>}
       <span className='no-pencil'></span>
+      {editOn && text.length > 0 && <span className='plus'>{plus}</span>}
     </div>
   </form>
   );
