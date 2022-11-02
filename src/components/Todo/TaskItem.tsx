@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 
 import { Task, TaskItemProps } from './TodoList.interface';
 
@@ -8,45 +8,52 @@ const x = '\u2715';
 const pencil = '\u270F';
 
 export default function TaskItem(props: TaskItemProps) {
-  const { task, toggleComplete, removeTask, toggleEditOn, handleChange, handleSubmit } = props;
+  const { task, toggleComplete, removeTask, toggleEditOn, handleChange } = props;
 
-  // TODO: move to higher component, only one possible input open at once
   const activeInput = useRef<HTMLInputElement>(null);
-  
-  useEffect(() => {
-    activeInput.current?.focus()
-  }, [activeInput, task.editOn])
-  
-  const getCompleteClass = (task: Task) => (task.completed ? 'complete' : '');
 
-  const getEditOnClass = (task: Task) => (task.editOn ? 'edit' : '');
+  const getCompleteClass = () => (task.completed ? 'complete' : '');
 
-  return (
-    <div className={`item-line ${getCompleteClass(task)} ${getEditOnClass(task)}`}>
+  const getEditOnClass = () => (task.editOn ? 'edit' : '');
+
+  const toggleFocus = () => {
+    if (task.editOn) {
+      activeInput.current!.blur()
+    } else {
+      activeInput.current!.focus()
+    }
+    toggleEditOn(task.id)
+  }
+
+  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    toggleFocus();
+  }
+
+  return ( // TODO: fix className whitespace
+    <form className={`item-line ${getCompleteClass} ${getEditOnClass}`} onSubmit={handleSubmit}>
       <div className='todo-item'>
         <span className='checkbox' onClick={() => toggleComplete(task.id)}>
           {task.completed ? xBox : box}
         </span>
-        <form onSubmit={handleSubmit(task.id)}>
-          <input
-            type='text'
-            value={task.text}
-            onChange={handleChange(task.id)}
-            ref={activeInput}
-            className={`item-text ${getCompleteClass(task)}`}
-            style={{width: task.text.length + 2 + 'ch'}} // TODO: move to css component library
-            readOnly={!task.editOn}
-            onBlur={() => task.editOn && toggleEditOn(task.id)}
-          />
-        </form>
+        <input
+          type='text'
+          value={task.text}
+          onChange={handleChange(task.id)}
+          ref={activeInput}
+          className={`item-text ${getCompleteClass}`}
+          style={{width: task.text.length + 2 + 'ch'}} // TODO: move to css component library
+          readOnly={!task.editOn}
+          onBlur={toggleFocus}
+        />
       </div>
       <div className='todo-item-buttons'>
         {task.editOn ?
           <span className='no-pencil'></span>
-        : <span className='pencil' onClick={() => toggleEditOn(task.id)}>{pencil}</span>
+        : <span className='pencil' onClick={toggleFocus}>{pencil}</span>
         }
         <span className='x-remove' onClick={() => removeTask(task.id)}>{x}</span>
       </div>
-    </div>
+    </form>
   );
 }

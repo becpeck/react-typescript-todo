@@ -18,6 +18,7 @@ export default function TodoList() {
   const [newTaskInput, setNewTaskInput] = useState(initialNewTaskInput);
   const [sortOn, setSortOn] = useState(false);
 
+
   // Task State functions
   const checkAllTasks = () => {
     setTasks(tasks.map(task => ({...task, completed: true})));
@@ -65,11 +66,6 @@ export default function TodoList() {
     )));
   }
 
-  const handleSubmitEdit = (id: Task['id']) => (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    toggleEditTask(id);
-  }
-
 
   // Input state functions
   const toggleEditInput = () => {
@@ -113,12 +109,13 @@ export default function TodoList() {
     }
   }
 
+
   return (
     <div className='widget-todo container'>
       <h2>To-do List</h2>
       <SortToggle 
-        sortOn = {sortOn}
-        toggleSort = {toggleSort}
+        sortOn={sortOn}
+        toggleSort={toggleSort}
       />
       <TaskButtons 
         tasks={tasks}
@@ -133,7 +130,6 @@ export default function TodoList() {
           removeTask={removeTask}
           toggleEditOn={toggleEditTask}
           handleChange={handleChangeTask}
-          handleSubmit={handleSubmitEdit}
         />
         <TaskInput 
           newTaskInput={newTaskInput}
