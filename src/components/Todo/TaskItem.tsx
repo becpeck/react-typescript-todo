@@ -31,7 +31,7 @@ export default function TaskItem(props: TaskItemProps) {
   }
 
   return ( // TODO: fix className whitespace
-    <form className={`item-line ${getCompleteClass} ${getEditOnClass}`} onSubmit={handleSubmit}>
+    <form className={`item-line ${getCompleteClass()} ${getEditOnClass()}`} onSubmit={handleSubmit}>
       <div className='todo-item'>
         <span className='checkbox' onClick={() => toggleComplete(task.id)}>
           {task.completed ? xBox : box}
@@ -41,7 +41,7 @@ export default function TaskItem(props: TaskItemProps) {
           value={task.text}
           onChange={handleChange(task.id)}
           ref={activeInput}
-          className={`item-text ${getCompleteClass}`}
+          className={`item-text ${getCompleteClass()}`}
           style={{width: task.text.length + 2 + 'ch'}} // TODO: move to css component library
           readOnly={!task.editOn}
           onBlur={toggleFocus}
