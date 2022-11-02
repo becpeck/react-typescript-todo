@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { Task, TaskItemProps } from './TodoList.interface';
+import { TaskItemProps } from './TodoList.interface';
 
 const box = '\u2610';
 const xBox = '\u2612';
