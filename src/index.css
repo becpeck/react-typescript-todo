@@ -160,25 +160,15 @@ button, input {
   padding-right: 0.5rem;
 }
 
-/* Input component open/close */
-.add-item-line {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.input-line, .input-line input {
-  width: 100%;
-}
-
-.add-item-line.open .input-line {
-  display: flex;
-  align-items: center;
-  padding-right: 0.5rem;
-}
-
 .plus {
   font-size: 120%;
+}
+
+#task-list {
+  border-bottom: 1px solid gray;
+  padding-bottom: 0.25rem;
+}
+
+.task-input {
+  padding-top: 0.25rem;
 }
