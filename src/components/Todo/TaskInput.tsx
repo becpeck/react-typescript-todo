@@ -37,26 +37,26 @@ export default function TaskInput(props: TaskInputProps) {
   }
 
   return ( // TODO: fix className whitespace
-  <form className={`item-line task-input ${getEditOnClass()}`} ref={form} onSubmit={handleSubmit}>
-    <div className='todo-item'>
-      <span className='checkbox'>
-        {box}
-      </span>
-      <input
-        type='text'
-        value={text}
-        onChange={handleChange}
-        ref={activeInput}
-        className={`item-text`}
-        style={{width: text.length + 2 + 'ch'}} // TODO: move to css component library
-        onBlur={handleBlur}
-      />
-    </div>
-    <div className='todo-item-buttons'>
-      {!editOn && <span className='pencil' onClick={handlePencilClick}>{pencil}</span>}
-      <span className='no-pencil'></span>
-      {editOn && text.length > 0 && <span className='plus'>{plus}</span>}
-    </div>
-  </form>
+    <form className={`item-line task-input ${getEditOnClass()}`} ref={form} onSubmit={handleSubmit}>
+      <div className='todo-item'>
+        <span className='checkbox'>
+          {box}
+        </span>
+        <input
+          type='text'
+          value={text}
+          onChange={handleChange}
+          ref={activeInput}
+          className={`item-text`}
+          style={{width: text.length + 2 + 'ch'}} // TODO: move to css component library
+          onBlur={handleBlur}
+        />
+      </div>
+      <div className='todo-item-buttons'>
+        {!editOn && <span className='pencil' onClick={handlePencilClick}>{pencil}</span>}
+        <span className='no-icon'></span>
+        {editOn && text.length > 0 && <span className='plus'>{plus}</span>}
+      </div>
+    </form>
   );
 }

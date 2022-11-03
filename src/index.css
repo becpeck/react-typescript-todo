@@ -78,7 +78,7 @@ button, input {
   margin-right: 0.25rem;
 }
 
-.pencil, .x-remove, .checkbox, .no-pencil, .plus {
+.pencil, .x-remove, .checkbox, .no-icon, .plus {
   width: 29.5px;
   height: 29.5px;
   display: inline-flex;

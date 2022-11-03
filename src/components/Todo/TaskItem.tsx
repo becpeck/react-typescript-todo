@@ -49,7 +49,7 @@ export default function TaskItem(props: TaskItemProps) {
       </div>
       <div className='todo-item-buttons'>
         {task.editOn ?
-          <span className='no-pencil'></span>
+          <span className='no-icon'></span>
         : <span className='pencil' onClick={toggleFocus}>{pencil}</span>
         }
         <span className='x-remove' onClick={() => removeTask(task.id)}>{x}</span>
