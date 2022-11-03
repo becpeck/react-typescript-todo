@@ -75,13 +75,10 @@ button, input {
 .pencil {
   transform: scaleX(-1);
   font-size: 120%;
+  margin-right: 0.25rem;
 }
 
-.x-remove {
-  margin-left: 0.25rem;
-}
-
-.pencil, .x-remove, .checkbox, .no-pencil {
+.pencil, .x-remove, .checkbox, .no-icon, .plus {
   width: 29.5px;
   height: 29.5px;
   display: inline-flex;
@@ -90,11 +87,11 @@ button, input {
   border-radius: 50%;
 }
 
-.pencil:hover, .x-remove:hover, .checkbox:hover {
+.pencil:hover, .x-remove:hover, .item-line:not(.task-input) .checkbox:hover, .plus:hover {
   background-color: #EFEFEF;
 }
 
-.pencil:active, .x-remove:active, .checkbox:active {
+.pencil:active, .x-remove:active, .item-line:not(.task-input) .checkbox:active, .plus:active {
   background-color: #D2D2D2;
 }
 
@@ -163,25 +160,15 @@ button, input {
   padding-right: 0.5rem;
 }
 
-/* Input component open/close */
-.add-item-line {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.input-line, .input-line input {
-  width: 100%;
-}
-
-.add-item-line.open .input-line {
-  display: flex;
-  align-items: center;
-  padding-right: 0.5rem;
-}
-
 .plus {
   font-size: 120%;
+}
+
+#task-list {
+  border-bottom: 1px solid gray;
+  padding-bottom: 0.25rem;
+}
+
+.task-input {
+  padding-top: 0.25rem;
 }

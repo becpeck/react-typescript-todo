@@ -1,11 +1,13 @@
 import React from "react";
 
-
-export interface Task {
-    id: string;
+export interface NewTask {
     text: string;
-    completed: boolean;
     editOn: boolean;
+}
+
+export interface Task extends NewTask {
+    id: string;
+    completed: boolean;
 }
   
 interface TaskProps {
@@ -13,7 +15,6 @@ interface TaskProps {
     removeTask: (id: Task['id']) => void;
     toggleEditOn: (id: Task['id']) => void;
     handleChange: (id: Task['id']) => React.ChangeEventHandler<HTMLInputElement>;
-    handleSubmit: (id: Task['id']) => React.FormEventHandler<HTMLFormElement>;
 }
 
 export interface TaskItemProps extends TaskProps {
@@ -25,11 +26,10 @@ export interface TaskItemListProps extends TaskProps {
 }
 
 export interface TaskInputProps {
-    value: string;
-    isOpen: boolean;
-    toggleOpen: () => void;
+    newTaskInput: NewTask;
+    toggleEditOn: () => void;
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
-    handleSubmit: React.FormEventHandler<HTMLFormElement>;
+    addNewTask: () => void;
 }
 
 export interface TaskButtonProps {

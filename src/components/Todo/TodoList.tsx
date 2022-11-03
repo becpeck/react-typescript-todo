@@ -6,17 +6,18 @@ import TaskItemList from './TaskItemList';
 import TaskInput from './TaskInput';
 import SortToggle from './SortToggle'
 
-import { Task } from './TodoList.interface';
+import { Task, NewTask } from './TodoList.interface';
 
 const sampleTexts: string[] = ['TS conversion', 'Make lunch', 'Clean kitchen', 'Finish laundry'];
 const sampleTasks: Task[] = sampleTexts.map(text => ({ id: uuid(), text, completed: false, editOn: false }));
+const initialNewTaskInput: NewTask = { text: '', editOn: false }
 
 
 export default function TodoList() {
   const [tasks, setTasks] = useState(sampleTasks);
-  const [inputValue, setInputValue] = useState('');
+  const [newTaskInput, setNewTaskInput] = useState(initialNewTaskInput);
   const [sortOn, setSortOn] = useState(false);
-  const [inputOpen, setInputOpen] = useState(false);
+
 
   // Task State functions
   const checkAllTasks = () => {
@@ -65,27 +66,22 @@ export default function TodoList() {
     )));
   }
 
-  const handleSubmitEdit = (id: Task['id']) => (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    toggleEditTask(id);
-  }
-
 
   // Input state functions
-  const changeInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = evt.target;
-    setInputValue(value);
+  const toggleEditInput = () => {
+    setNewTaskInput({...newTaskInput, editOn: !newTaskInput.editOn})
   }
 
-  const handleSubmitTask = (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    const newTask: Task = {id: uuid(), text: inputValue, completed: false, editOn: false}
+  const handleChangeInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = evt.target;
+    setNewTaskInput({...newTaskInput, text: value});
+  }
+
+  const addNewTask = () => {
+    const newTask: Task = {id: uuid(), text: newTaskInput.text, completed: false, editOn: false}
     const updatedTasks = sortOn ? sortTask(newTask, [...tasks]) : [...tasks, newTask]
     setTasks(updatedTasks)
-  }
-
-  const toggleInputOpen = () => {
-    setInputOpen(!inputOpen)
+    setNewTaskInput(initialNewTaskInput)
   }
 
 
@@ -113,12 +109,13 @@ export default function TodoList() {
     }
   }
 
+
   return (
     <div className='widget-todo container'>
       <h2>To-do List</h2>
       <SortToggle 
-        sortOn = {sortOn}
-        toggleSort = {toggleSort}
+        sortOn={sortOn}
+        toggleSort={toggleSort}
       />
       <TaskButtons 
         tasks={tasks}
@@ -133,14 +130,12 @@ export default function TodoList() {
           removeTask={removeTask}
           toggleEditOn={toggleEditTask}
           handleChange={handleChangeTask}
-          handleSubmit={handleSubmitEdit}
         />
         <TaskInput 
-          value={inputValue}
-          isOpen={inputOpen}
-          toggleOpen={toggleInputOpen}
-          handleChange={changeInput}
-          handleSubmit={handleSubmitTask}
+          newTaskInput={newTaskInput}
+          toggleEditOn={toggleEditInput}
+          handleChange={handleChangeInput}
+          addNewTask={addNewTask}
         />
       </div>
     </div>
