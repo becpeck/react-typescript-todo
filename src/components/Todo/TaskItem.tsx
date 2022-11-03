@@ -2,10 +2,7 @@ import React, { useRef } from 'react';
 
 import { TaskItemProps } from './TodoList.interface';
 
-const box = '\u2610';
-const xBox = '\u2612';
-const x = '\u2715';
-const pencil = '\u270F';
+import { emptyBox, checkedBox, pencil, xRemove } from './constants';
 
 export default function TaskItem(props: TaskItemProps) {
   const { task, toggleComplete, removeTask, toggleEditOn, handleChange } = props;
@@ -34,7 +31,7 @@ export default function TaskItem(props: TaskItemProps) {
     <form className={`item-line ${getCompleteClass()} ${getEditOnClass()}`} onSubmit={handleSubmit}>
       <div className='todo-item'>
         <span className='checkbox' onClick={() => toggleComplete(task.id)}>
-          {task.completed ? xBox : box}
+          {task.completed ? checkedBox : emptyBox}
         </span>
         <input
           type='text'
@@ -52,7 +49,7 @@ export default function TaskItem(props: TaskItemProps) {
           <span className='no-icon'></span>
         : <span className='pencil' onClick={toggleFocus}>{pencil}</span>
         }
-        <span className='x-remove' onClick={() => removeTask(task.id)}>{x}</span>
+        <span className='x-remove' onClick={() => removeTask(task.id)}>{xRemove}</span>
       </div>
     </form>
   );

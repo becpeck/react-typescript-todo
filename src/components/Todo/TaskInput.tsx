@@ -2,9 +2,7 @@ import React, { useRef } from 'react';
 
 import { TaskInputProps } from './TodoList.interface';
 
-const box = '\u2610';
-const pencil = '\u270F';
-const plus = '\uFF0B';
+import { emptyBox, pencil, plus } from './constants';
 
 export default function TaskInput(props: TaskInputProps) {
   const { text, editOn } = props.newTaskInput;
@@ -39,9 +37,7 @@ export default function TaskInput(props: TaskInputProps) {
   return ( // TODO: fix className whitespace
     <form className={`item-line task-input ${getEditOnClass()}`} ref={form} onSubmit={handleSubmit}>
       <div className='todo-item'>
-        <span className='checkbox'>
-          {box}
-        </span>
+        <span className='checkbox'>{emptyBox}</span>
         <input
           type='text'
           value={text}
