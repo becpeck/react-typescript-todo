@@ -4,13 +4,11 @@ import { v4 as uuid } from 'uuid';
 import TaskButtons from './TaskButtons';
 import TaskItemList from './TaskItemList';
 import TaskInput from './TaskInput';
-import SortToggle from './SortToggle'
+import SortToggle from './SortToggle';
 
-import { Task, NewTask } from './TodoList.interface';
+import { Task } from './TodoList.interface';
 
-const sampleTexts: string[] = ['TS conversion', 'Make lunch', 'Clean kitchen', 'Finish laundry'];
-const sampleTasks: Task[] = sampleTexts.map(text => ({ id: uuid(), text, completed: false, editOn: false }));
-const initialNewTaskInput: NewTask = { text: '', editOn: false }
+import { sampleTasks, initialNewTaskInput } from './constants';
 
 
 export default function TodoList() {
