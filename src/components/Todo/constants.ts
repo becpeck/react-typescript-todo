@@ -1,11 +1,11 @@
 import { v4 as uuid } from 'uuid';
 import { Task, NewTask } from './TodoList.interface';
 
-export const emptyBox = '\u2610';
-export const checkedBox = '\u2612';
-export const pencil = '\u270F';
-export const xRemove = '\u2715';
-export const plus = '\uFF0B';
+export const emptyBox = { icon: '\u2610', className: 'checkbox' };
+export const checkedBox = { icon: '\u2612', className: 'checkbox' };
+export const pencil = { icon: '\u270F', className: 'pencil' };
+export const xRemove = { icon: '\u2715', className: 'x-remove' };
+export const plus = { icon: '\uFF0B', className: 'plus' };
 
 export const initialNewTaskInput: NewTask = { text: '', editOn: false };
 

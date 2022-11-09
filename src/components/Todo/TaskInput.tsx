@@ -37,7 +37,7 @@ export default function TaskInput(props: TaskInputProps) {
   return ( // TODO: fix className whitespace
     <form className={`item-line task-input ${getEditOnClass()}`} ref={form} onSubmit={handleSubmit}>
       <div className='todo-item'>
-        <span className='checkbox'>{emptyBox}</span>
+        <span className={emptyBox.className}>{emptyBox.icon}</span>
         <input
           type='text'
           value={text}
@@ -49,9 +49,9 @@ export default function TaskInput(props: TaskInputProps) {
         />
       </div>
       <div className='todo-item-buttons'>
-        {!editOn && <span className='pencil' onClick={handlePencilClick}>{pencil}</span>}
+      {!editOn && <span className={pencil.className} onClick={handlePencilClick}>{pencil.icon}</span>}
         <span className='no-icon'></span>
-        {editOn && text.length > 0 && <span className='plus'>{plus}</span>}
+        {editOn && text.length > 0 && <span className={plus.className}>{plus.icon}</span>}
       </div>
     </form>
   );

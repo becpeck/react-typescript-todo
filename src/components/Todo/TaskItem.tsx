@@ -30,8 +30,8 @@ export default function TaskItem(props: TaskItemProps) {
   return ( // TODO: fix className whitespace
     <form className={`item-line ${getCompleteClass()} ${getEditOnClass()}`} onSubmit={handleSubmit}>
       <div className='todo-item'>
-        <span className='checkbox' onClick={() => toggleComplete(task.id)}>
-          {task.completed ? checkedBox : emptyBox}
+        <span className={task.completed ? checkedBox.className : emptyBox.className} onClick={() => toggleComplete(task.id)}>
+          {task.completed ? checkedBox.icon : emptyBox.icon}
         </span>
         <input
           type='text'
@@ -47,9 +47,9 @@ export default function TaskItem(props: TaskItemProps) {
       <div className='todo-item-buttons'>
         {task.editOn ?
           <span className='no-icon'></span>
-        : <span className='pencil' onClick={toggleFocus}>{pencil}</span>
+        : <span className={pencil.className} onClick={toggleFocus}>{pencil.icon}</span>
         }
-        <span className='x-remove' onClick={() => removeTask(task.id)}>{xRemove}</span>
+        <span className={xRemove.className} onClick={() => removeTask(task.id)}>{xRemove.icon}</span>
       </div>
     </form>
   );
