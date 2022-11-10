@@ -2,8 +2,7 @@ import React, { useRef } from 'react';
 import Icon from './Icon';
 
 import { TaskItemProps } from './TodoList.interface';
-
-import { emptyBox, checkedBox, pencil, xRemove } from './constants';
+import { IconValues } from './constants';
 
 export default function TaskItem(props: TaskItemProps) {
   const { task, toggleComplete, removeTask, toggleEditOn, handleChange } = props;
@@ -32,7 +31,7 @@ export default function TaskItem(props: TaskItemProps) {
     <form className={`item-line ${getCompleteClass()} ${getEditOnClass()}`} onSubmit={handleSubmit}>
       <div className='todo-item'>
         <Icon
-          type={task.completed ? checkedBox : emptyBox}
+          type={task.completed ? IconValues.checkedBox : IconValues.emptyBox}
           handleClick={() => toggleComplete(task.id)}
         />
         <input
@@ -48,10 +47,10 @@ export default function TaskItem(props: TaskItemProps) {
       </div>
       <div className='todo-item-buttons'>
         {task.editOn ?
-          <Icon/>
-        : <Icon type={pencil} handleClick={toggleFocus}/>
+          <Icon type={IconValues.noIcon}/>
+        : <Icon type={IconValues.pencil} handleClick={toggleFocus}/>
         }
-        <Icon type={xRemove} handleClick={() => removeTask(task.id)}/>
+        <Icon type={IconValues.xRemove} handleClick={() => removeTask(task.id)}/>
       </div>
     </form>
   );
