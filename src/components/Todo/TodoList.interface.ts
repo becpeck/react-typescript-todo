@@ -1,4 +1,5 @@
 import React from "react";
+import { IconValues } from "./constants";
 
 export interface NewTask {
     text: string;
@@ -9,7 +10,7 @@ export interface Task extends NewTask {
     id: string;
     completed: boolean;
 }
-  
+
 interface TaskProps {
     toggleComplete: (id: Task['id']) => void;
     removeTask: (id: Task['id']) => void;
@@ -30,6 +31,11 @@ export interface TaskInputProps {
     toggleEditOn: () => void;
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
     addNewTask: () => void;
+}
+
+export interface IconProps {
+    type: typeof IconValues[keyof typeof IconValues]
+    handleClick?: () => void;
 }
 
 export interface TaskButtonProps {

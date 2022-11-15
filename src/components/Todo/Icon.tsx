@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function Icon(props: any) {
+import { IconProps } from './TodoList.interface';
+
+export default function Icon(props: IconProps) {
     const { type, handleClick } = props;
 
     return (
-        <span className={type.className} onClick={handleClick}>{type.icon}</span>
+        <span className={type.CLASS_NAME} onClick={handleClick}>{type.ICON}</span>
     );
 }
