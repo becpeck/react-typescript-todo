@@ -1,5 +1,5 @@
 import React from "react";
-import { IconValues } from "./constants";
+import { ICONS } from "./constants";
 
 export interface NewTask {
     text: string;
@@ -34,7 +34,7 @@ export interface TaskInputProps {
 }
 
 export interface IconProps {
-    type: typeof IconValues[keyof typeof IconValues]
+    variant: typeof ICONS[keyof typeof ICONS]
     handleClick?: () => void;
 }
 

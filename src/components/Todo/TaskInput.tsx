@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Icon from './Icon';
 
 import { TaskInputProps } from './TodoList.interface';
-import { IconValues } from './constants';
+import { ICONS } from './constants';
 
 export default function TaskInput(props: TaskInputProps) {
   const { text, editOn } = props.newTaskInput;
@@ -37,7 +37,7 @@ export default function TaskInput(props: TaskInputProps) {
   return ( // TODO: fix className whitespace
     <form className={`item-line task-input ${getEditOnClass()}`} ref={form} onSubmit={handleSubmit}>
       <div className='todo-item'>
-        <Icon type={IconValues.EMPTY_BOX} />
+        <Icon variant={ICONS.EMPTY_BOX} />
         <input
           type='text'
           value={text}
@@ -49,9 +49,9 @@ export default function TaskInput(props: TaskInputProps) {
         />
       </div>
       <div className='todo-item-buttons'>
-        {!editOn && <Icon type={IconValues.PENCIL} handleClick={handlePencilClick}/>}
-        <Icon type={IconValues.NO_ICON}/>
-        {editOn && text.length > 0 && <Icon type={IconValues.PLUS}/>}
+        {!editOn && <Icon variant={ICONS.PENCIL} handleClick={handlePencilClick}/>}
+        <Icon variant={ICONS.NO_ICON}/>
+        {editOn && text.length > 0 && <Icon variant={ICONS.PLUS}/>}
       </div>
     </form>
   );

@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { Task, NewTask } from './TodoList.interface';
 
-export const IconValues = {
+export const ICONS = {
     EMPTY_BOX: { ICON: '\u2610', CLASS_NAME: 'checkbox' } as const,
     CHECKED_BOX: { ICON: '\u2612', CLASS_NAME: 'checkbox' } as const,
     PENCIL: { ICON: '\u270F', CLASS_NAME: 'pencil' } as const,

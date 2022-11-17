@@ -3,9 +3,9 @@ import React from 'react';
 import { IconProps } from './TodoList.interface';
 
 export default function Icon(props: IconProps) {
-    const { type, handleClick } = props;
+    const { variant, handleClick } = props;
 
     return (
-        <span className={type.CLASS_NAME} onClick={handleClick}>{type.ICON}</span>
+        <span className={variant.CLASS_NAME} onClick={handleClick}>{variant.ICON}</span>
     );
 }
