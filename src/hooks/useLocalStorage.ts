@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
+import { UseLocalStorage } from './hooks';
+
+function useLocalStorage<T>(key: string, initialValue: T): UseLocalStorage<T> {
     const [storedValue, setStoredValue] = useState<T>(() => {
         const item = window.localStorage.getItem(key);
         return item ? JSON.parse(item) : initialValue;
