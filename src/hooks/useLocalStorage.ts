@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
 import { Task } from '../components/Todo/TodoList.interface';
-import { UseLocalStorage, UseTaskState, UseSortState } from './hooks';
+import { Key, UseLocalStorage, UseTaskState, UseSortState } from './hooks';
 
-function useLocalStorage<T>(key: string, initialValue: T): UseLocalStorage<T> {
+import { KEYS } from './constants';
+
+function useLocalStorage<T>(key: Key, initialValue: T): UseLocalStorage<T> {
     const [storedValue, setStoredValue] = useState<T>(() => {
         const item = window.localStorage.getItem(key);
         return item ? JSON.parse(item) : initialValue;
@@ -18,9 +20,9 @@ function useLocalStorage<T>(key: string, initialValue: T): UseLocalStorage<T> {
 }
 
 export function useTaskState(initialTasks: Task[]): UseTaskState {
-    return useLocalStorage<Task[]>('tasks', initialTasks)
+    return useLocalStorage<Task[]>(KEYS.TASK_KEY, initialTasks)
 }
 
 export function useSortState(initialSortOn: boolean): UseSortState {
-    return useLocalStorage<boolean>('sortOn', initialSortOn)
+    return useLocalStorage<boolean>(KEYS.SORT_KEY, initialSortOn)
 }
