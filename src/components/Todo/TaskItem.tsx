@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
+import Icon from './Icon';
 
 import { TaskItemProps } from './TodoList.interface';
-
-import { emptyBox, checkedBox, pencil, xRemove } from './constants';
+import { ICONS } from './constants';
 
 export default function TaskItem(props: TaskItemProps) {
   const { task, toggleComplete, removeTask, toggleEditOn, handleChange } = props;
@@ -30,9 +30,10 @@ export default function TaskItem(props: TaskItemProps) {
   return ( // TODO: fix className whitespace
     <form className={`item-line ${getCompleteClass()} ${getEditOnClass()}`} onSubmit={handleSubmit}>
       <div className='todo-item'>
-        <span className='checkbox' onClick={() => toggleComplete(task.id)}>
-          {task.completed ? checkedBox : emptyBox}
-        </span>
+        <Icon
+          variant={task.completed ? ICONS.CHECKED_BOX : ICONS.EMPTY_BOX}
+          handleClick={() => toggleComplete(task.id)}
+        />
         <input
           type='text'
           value={task.text}
@@ -46,10 +47,10 @@ export default function TaskItem(props: TaskItemProps) {
       </div>
       <div className='todo-item-buttons'>
         {task.editOn ?
-          <span className='no-icon'></span>
-        : <span className='pencil' onClick={toggleFocus}>{pencil}</span>
+          <Icon variant={ICONS.NO_ICON}/>
+        : <Icon variant={ICONS.PENCIL} handleClick={toggleFocus}/>
         }
-        <span className='x-remove' onClick={() => removeTask(task.id)}>{xRemove}</span>
+        <Icon variant={ICONS.X_REMOVE} handleClick={() => removeTask(task.id)}/>
       </div>
     </form>
   );
