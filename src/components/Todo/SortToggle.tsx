@@ -8,7 +8,7 @@ export default function SortToggle(props: SortToggleProps) {
   return (
     <div className='toggle'>
       <label htmlFor='sort-toggle' className='toggle-label'>Sort</label>
-      <div>
+      <div> {/* TODO: remove extraneous?  */}
         <input 
           className='toggle-input'
           type='checkbox' 

@@ -1,0 +1,54 @@
+@mixin toggle-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle {
+  $toggle-height: 1rem;
+  $toggle-width: $toggle-height * 2;
+  $slider-size: $toggle-height * 0.7;
+  $slider-offset: calc(($toggle-height - $slider-size) / 2);
+
+  @include toggle-flex;
+  margin-bottom: 1rem;
+
+  &-label { margin-right: 0.5rem; }
+
+  &-input {
+    display: none;
+
+    &:checked + .toggle-track {
+      background: #978B8B;
+      border: 1px solid #847A7A;
+
+      .toggle-slider {
+        left: calc(100% - $slider-offset + 1px);
+        transform: translateX(-100%);
+        border: 1px solid #847A7A;
+      }
+    }
+  }
+
+  &-track {
+    @include toggle-flex;
+
+    position: relative;
+    width: $toggle-width;
+    height: $toggle-height;
+    border-radius: calc($toggle-height / 2);
+    background: #EFEFEF;
+    border: 1px solid #D2D2D2;
+
+    .toggle-slider {
+      position: absolute;
+      width: $slider-size;
+      height: $slider-size;
+      border-radius: calc($slider-size / 2);
+      top: calc($slider-offset - 1px);
+      left: calc($slider-offset - 1px);
+      background: #FFFFFF;
+      border: 1px solid #D2D2D2;
+    }
+  }
+}

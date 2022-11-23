@@ -1,3 +1,5 @@
+@use 'toggle';
+
 * {
   box-sizing: border-box;
 }
@@ -108,56 +110,6 @@ button, input {
 
 .item-line.edit input:focus {
   background-color: #EFEFEF;
-}
-
-/* Sort toggle switch */
-.toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 1rem;
-}
-
-.toggle-input {
-  display: none;
-}
-
-.toggle-track {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  width: 2rem;
-  height: 1rem;
-  border-radius: 2rem;
-  background: #EFEFEF;
-  border: 1px solid #d2d2d2;
-}
-
-.toggle-track .toggle-slider {
-  position: absolute;
-  width: 0.7rem;
-  height: 0.7rem;
-  top: calc(0.15rem - 1px);
-  left: calc(0.15rem - 1px);
-  border-radius: 0.7rem;
-  background: #fff;
-  border: 1px solid #d2d2d2;
-}
-
-.toggle-input:checked + .toggle-track {
-  background: #978b8b;
-  border: 1px solid #847a7a
-}
-
-.toggle-input:checked + .toggle-track .toggle-slider {
-  left: calc(100% - 0.15rem + 1px);
-  transform: translateX(-100%);
-  border: 1px solid #847a7a;
-}
-
-.toggle-label {
-  padding-right: 0.5rem;
 }
 
 .plus {
