@@ -1,4 +1,5 @@
 @use 'toggle';
+@use 'icons';
 
 * {
   box-sizing: border-box;
@@ -55,11 +56,6 @@ button, input {
   padding-right: 1rem;
 }
 
-.checkbox {
-  margin-right: 0.25rem;
-  font-size: 150%;
-}
-
 .item-line.complete {
   color: grey;
 }
@@ -72,29 +68,6 @@ button, input {
 .todo-item-buttons {
   display: flex;
   align-items: center;
-}
-
-.pencil {
-  transform: scaleX(-1);
-  font-size: 120%;
-  margin-right: 0.25rem;
-}
-
-.pencil, .x-remove, .checkbox, .no-icon, .plus {
-  width: 29.5px;
-  height: 29.5px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-}
-
-.pencil:hover, .x-remove:hover, .item-line:not(.task-input) .checkbox:hover, .plus:hover {
-  background-color: #EFEFEF;
-}
-
-.pencil:active, .x-remove:active, .item-line:not(.task-input) .checkbox:active, .plus:active {
-  background-color: #D2D2D2;
 }
 
 .item-line input, .item-line input:focus {
@@ -110,10 +83,6 @@ button, input {
 
 .item-line.edit input:focus {
   background-color: #EFEFEF;
-}
-
-.plus {
-  font-size: 120%;
 }
 
 #task-list {
