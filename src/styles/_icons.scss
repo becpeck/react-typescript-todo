@@ -3,29 +3,29 @@
 
 $icon-margin: 0.25rem;
 
-.checkbox {
-  @include scale-largest;
-  margin-right: $icon-margin;
-}
-
-.pencil {
-	@include scale-larger;
-  margin-right: $icon-margin;
-	transform: scaleX(-1);
-}
-
-.plus { @include scale-larger; }
-
-.pencil, .x-remove, .checkbox, .no-icon, .plus {
-  width: 29.5px;
+.icon {
+	width: 29.5px;
   height: 29.5px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
 
-  &:not(.no-icon):hover { background-color: #EFEFEF; }
+	&:not(.no-icon):hover { background-color: #EFEFEF; }
   &:not(.no-icon):active { background-color: #D2D2D2; }
+
+	&.checkbox {
+		@include scale-largest;
+		margin-right: $icon-margin;
+	}
+
+	&.pencil {
+		@include scale-larger;
+		margin-right: $icon-margin;
+		transform: scaleX(-1);
+	}
+
+	&.plus { @include scale-larger; }
 }
 
 .task-input .checkbox {
