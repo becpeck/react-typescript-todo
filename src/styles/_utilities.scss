@@ -1,0 +1,13 @@
+@import 'variables';
+
+@function get($map, $key) {
+	@if map-has-key($map, $key) {
+		@return map-get($map, $key);
+	}
+	@error 'Invalid key: `#{$key}` for map. Valid keys: `#{map-keys($map)}`';
+}
+
+@function get-color($color-name, $variant: normal) {
+  $color-map: get($color, $color-name);
+  @return get($color-map, $variant);
+}
