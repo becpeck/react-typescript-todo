@@ -1,3 +1,5 @@
+@import 'utilities';
+
 @mixin toggle-flex {
   display: flex;
   align-items: center;
@@ -18,13 +20,13 @@
     display: none;
 
     &:checked + .toggle-track {
-      background: #978B8B;
-      border: 1px solid #847A7A;
+      background: get-color(primary, lighter);
+      border: 1px solid get-color(primary, light);
 
       .toggle-slider {
         left: calc(100% - $slider-offset + 1px);
         transform: translateX(-100%);
-        border: 1px solid #847A7A;
+        border: 1px solid get-color(primary, light);
       }
     }
   }
@@ -36,8 +38,8 @@
     width: $toggle-width;
     height: $toggle-height;
     border-radius: calc($toggle-height / 2);
-    background: #EFEFEF;
-    border: 1px solid #D2D2D2;
+    background: get-color(grayscale, lighter);
+    border: 1px solid get-color(grayscale, light);
 
     .toggle-slider {
       position: absolute;
@@ -46,8 +48,8 @@
       border-radius: calc($slider-size / 2);
       top: calc($slider-offset - 1px);
       left: calc($slider-offset - 1px);
-      background: #FFFFFF;
-      border: 1px solid #D2D2D2;
+      background: get-color(grayscale, white);
+      border: 1px solid get-color(grayscale, light);
     }
   }
 }

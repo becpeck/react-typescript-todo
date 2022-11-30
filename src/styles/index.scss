@@ -1,5 +1,6 @@
 @use 'toggle';
 @use 'icons';
+@import 'utilities';
 
 @mixin flex-row-space-between {
   display: flex;
@@ -18,8 +19,8 @@
 }
 
 body {
-  background-color: rgb(244, 244, 244);
-  color: rgb(65, 75, 60);
+  background-color: get-color(grayscale, lighter);
+  color: get-color(primary, dark);
   font-family: 'Bitter', serif;
   margin: 0;
 
@@ -31,8 +32,8 @@ body {
     gap: 1rem;
     margin: 0.5rem;
     padding: 1.5rem 1rem 1rem;
-    background-color: white;
-    border: 1px solid #D2D2D2;
+    background-color: get-color(grayscale, white);
+    border: 1px solid get-color(grayscale, light);
     border-radius: 1rem;
   
     h2 {
@@ -44,8 +45,8 @@ body {
       gap: 0.5rem;
   
       button {
-        color: #7a6a6a;
-        border: 1px solid #D2D2D2;
+        color: get-color(primary, normal);
+        border: 1px solid get-color(grayscale, light);
         border-radius: 0.25rem;
         min-height: 1.5rem;
       }
@@ -58,7 +59,7 @@ body {
       #task-list {
         @include flex-col-stretch;
         gap: 0.25rem;
-        border-bottom: 1px solid gray;
+        border-bottom: 1px solid get-color(primary, lighter);
         padding-bottom: 0.25rem;
       }
   
@@ -66,9 +67,9 @@ body {
         @include flex-row-space-between;
         gap: 0.25rem;
   
-        &.complete { color: gray; }
+        &.complete { color: get-color(primary, lighter); }
   
-        &.edit .item-text { background-color: #EFEFEF; }
+        &.edit .item-text { background-color: get-color(grayscale, lighter); }
         
         .icon {
           height: 27px;

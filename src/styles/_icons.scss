@@ -1,3 +1,5 @@
+@import 'utilities';
+
 @mixin scale-larger { font-size: 120%; }
 @mixin scale-largest { font-size: 150%; }
 
@@ -7,8 +9,8 @@
   align-items: center;
   border-radius: 50%;
 
-	&:not(.no-icon):hover { background-color: #EFEFEF; }
-  &:not(.no-icon):active { background-color: #D2D2D2; }
+	&:not(.no-icon):hover { background-color: get-color(grayscale, lighter); }
+  &:not(.no-icon):active { background-color: get-color(grayscale, light); }
 
 	&.checkbox { @include scale-largest; }
 
