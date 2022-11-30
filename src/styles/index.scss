@@ -2,18 +2,6 @@
 @use 'icons';
 @import 'utilities';
 
-@mixin flex-row-space-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-@mixin flex-col-stretch {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -25,11 +13,7 @@ body {
   margin: 0;
 
   .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    @include flex($dir: column, $justify: center, $align: center, $gap: 1rem);
     margin: 0.5rem;
     padding: 1.5rem 1rem 1rem;
     background-color: get-color(grayscale, white);
@@ -41,8 +25,7 @@ body {
     }
   
     .list-buttons {
-      display: flex;
-      gap: 0.5rem;
+      @include flex($gap: 0.5rem);
   
       button {
         color: get-color(primary, normal);
@@ -53,19 +36,17 @@ body {
     }
     
     #tasks-container {
-      @include flex-col-stretch;
+      @include flex($dir: column, $align: stretch);
       width: 100%;
   
       #task-list {
-        @include flex-col-stretch;
-        gap: 0.25rem;
+        @include flex($dir: column, $align: stretch, $gap: 0.25rem);
         border-bottom: 1px solid get-color(primary, lighter);
         padding-bottom: 0.25rem;
       }
   
       .item-line {
-        @include flex-row-space-between;
-        gap: 0.25rem;
+        @include flex($justify: space-between, $align: center, $gap: 0.25rem);
   
         &.complete { color: get-color(primary, lighter); }
   

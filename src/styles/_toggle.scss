@@ -1,18 +1,12 @@
 @import 'utilities';
 
-@mixin toggle-flex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .toggle {
   $toggle-height: 1rem;
   $toggle-width: $toggle-height * 2;
   $slider-size: $toggle-height * 0.7;
   $slider-offset: calc(($toggle-height - $slider-size) / 2);
 
-  @include toggle-flex;
+  @include flex($justify: space-between, $align: center);
 
   &-label { margin-right: 0.5rem; }
 
@@ -32,7 +26,7 @@
   }
 
   &-track {
-    @include toggle-flex;
+    @include flex($justify: space-between, $align: center);
 
     position: relative;
     width: $toggle-width;

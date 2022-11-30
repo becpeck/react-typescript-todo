@@ -4,9 +4,7 @@
 @mixin scale-largest { font-size: 150%; }
 
 .icon {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+	@include flex($justify: center, $align: center);
   border-radius: 50%;
 
 	&:not(.no-icon):hover { background-color: get-color(grayscale, lighter); }

@@ -11,3 +11,11 @@
   $color-map: get($color, $color-name);
   @return get($color-map, $variant);
 }
+
+@mixin flex($dir: row, $justify: normal, $align: normal, $gap: normal) {
+	display: flex;
+	flex-direction: $dir;
+	justify-content: $justify;
+	align-items: $align;
+	gap: $gap;
+}
