@@ -53,13 +53,14 @@ body {
         &.edit .item-text { background-color: get-color(grayscale, lighter); }
         
         .icon {
-          height: 27px;
-          flex-basis: 27px;
+          height: 1.75em;
+          flex-basis: 1.75em;
           flex-shrink: 0;
         }
   
         .item-text {
           min-width: 0;
+          height: 1.75em;
           flex-grow: 1;
           font-family: inherit;
           font-size: inherit;

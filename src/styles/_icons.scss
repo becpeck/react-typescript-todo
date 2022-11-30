@@ -1,26 +1,18 @@
 @import 'utilities';
 
-@mixin scale-larger { font-size: 120%; }
-@mixin scale-largest { font-size: 150%; }
-
 .icon {
-	@include flex($justify: center, $align: center);
+  @include flex($justify: center, $align: center);
   border-radius: 50%;
 
-	&:not(.no-icon):hover { background-color: get-color(grayscale, lighter); }
+  &:not(.no-icon):hover { background-color: get-color(grayscale, lighter); }
   &:not(.no-icon):active { background-color: get-color(grayscale, light); }
 
-	&.checkbox { @include scale-largest; }
-
-	&.pencil {
-		@include scale-larger;
-		transform: scaleX(-1);
-	}
-
-	&.plus { @include scale-larger; }
+  &.empty-box, &.checked-box, &.pencil, &.x-remove { 
+    & svg { font-size: 0.95em; }
+  }
 }
 
-.task-input .checkbox {
-	&:hover { background-color: inherit; }
-	&:active { background-color: inherit; }
+.task-input .empty-box {
+  &:hover { background-color: inherit; }
+  &:active { background-color: inherit; }
 }
