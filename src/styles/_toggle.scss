@@ -1,0 +1,49 @@
+@import 'utilities';
+
+.toggle {
+  $toggle-height: 1em;
+  $toggle-width: $toggle-height * 2;
+  $slider-size: $toggle-height * 0.7;
+  $slider-offset: calc(($toggle-height - $slider-size) / 2);
+
+  @include flex($justify: space-between, $align: center);
+
+  &-label { margin-right: 0.5rem; }
+
+  &-input {
+    display: none;
+
+    &:checked + .toggle-track {
+      background: get-color(primary, lighter);
+      border: 1px solid get-color(primary, light);
+
+      .toggle-slider {
+        left: calc(100% - $slider-offset + 1px);
+        transform: translateX(-100%);
+        border: 1px solid get-color(primary, light);
+      }
+    }
+  }
+
+  &-track {
+    @include flex($justify: space-between, $align: center);
+
+    position: relative;
+    width: $toggle-width;
+    height: $toggle-height;
+    border-radius: calc($toggle-height / 2);
+    background: get-color(grayscale, lighter);
+    border: 1px solid get-color(grayscale, light);
+
+    .toggle-slider {
+      position: absolute;
+      width: $slider-size;
+      height: $slider-size;
+      border-radius: calc($slider-size / 2);
+      top: calc($slider-offset - 1px);
+      left: calc($slider-offset - 1px);
+      background: get-color(grayscale, white);
+      border: 1px solid get-color(grayscale, light);
+    }
+  }
+}

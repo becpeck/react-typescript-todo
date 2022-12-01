@@ -36,23 +36,23 @@ export default function TaskInput(props: TaskInputProps) {
 
   return ( // TODO: fix className whitespace
     <form className={`item-line task-input ${getEditOnClass()}`} ref={form} onSubmit={handleSubmit}>
-      <div className='todo-item'>
-        <Icon variant={ICONS.EMPTY_BOX} />
-        <input
-          type='text'
-          value={text}
-          onChange={handleChange}
-          ref={activeInput}
-          className={`item-text`}
-          style={{width: text.length + 2 + 'ch'}} // TODO: move to css component library
-          onBlur={handleBlur}
-        />
-      </div>
-      <div className='todo-item-buttons'>
-        {!editOn && <Icon variant={ICONS.PENCIL} handleClick={handlePencilClick}/>}
-        <Icon variant={ICONS.NO_ICON}/>
-        {editOn && text.length > 0 && <Icon variant={ICONS.PLUS}/>}
-      </div>
+      <Icon variant={ICONS.EMPTY_BOX} />
+      <input
+        type='text'
+        value={text}
+        onChange={handleChange}
+        ref={activeInput}
+        className={`item-text`}
+        onBlur={handleBlur}
+      />
+      { editOn
+        ? <Icon variant={ICONS.NO_ICON} />
+        : <Icon variant={ICONS.PENCIL} handleClick={handlePencilClick} />
+      }
+      { editOn && text.length > 0
+        ? <Icon variant={ICONS.PLUS}/>
+        : <Icon variant={ICONS.NO_ICON} />
+      }
     </form>
   );
 }

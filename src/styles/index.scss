@@ -1,0 +1,111 @@
+@use 'toggle';
+@use 'icons';
+@import 'utilities';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: get-color(grayscale, lighter);
+  color: get-color(primary, dark);
+  font-family: 'Bitter', serif;
+  margin: 0;
+
+  .container {
+    @include flex($dir: column, $justify: center, $align: center, $gap: 1rem);
+    margin: 0.5rem;
+    padding: 1.5rem 1rem 1rem;
+    background-color: get-color(grayscale, white);
+    border: 1px solid get-color(grayscale, light);
+    border-radius: 1rem;
+  
+    h2 {
+      margin: 0;
+      font-size: 1.75rem;
+    }
+  
+    .list-buttons {
+      @include flex($gap: 0.5rem);
+  
+      button {
+        color: get-color(primary, normal);
+        border: 1px solid get-color(grayscale, light);
+        min-height: 1.5rem;
+        border-radius: 0.75rem;
+        font-family: 'Arimo', Arial, sans-serif;
+        padding: 1px 6px;
+        font-size: 83.33%;
+        $background-color: get-color(grayscale, lighter);
+        background-color: $background-color;
+
+        &:disabled { 
+          background-color: adjust-color($color: $background-color, $lightness: 4%);
+          color: get-color(primary, lighter);
+        }
+      }
+    }
+    
+    #tasks-container {
+      @include flex($dir: column, $align: stretch);
+      width: 100%;
+  
+      #task-list {
+        @include flex($dir: column, $align: stretch, $gap: 0.25rem);
+        border-bottom: 1px solid get-color(primary, lighter);
+        padding-bottom: 0.25rem;
+      }
+  
+      .item-line {
+        @include flex($justify: space-between, $align: center, $gap: 0.25rem);
+  
+        &.complete { color: get-color(primary, lighter); }
+  
+        &.edit .item-text { background-color: get-color(grayscale, lighter); }
+        
+        .icon {
+          height: 1.75em;
+          flex-basis: 1.75em;
+          flex-shrink: 0;
+        }
+  
+        .item-text {
+          min-width: 0;
+          height: 1.75em;
+          flex-grow: 1;
+          font-family: inherit;
+          font-size: inherit;
+          border: none;
+          border-radius: 1rem;
+          padding: 0.25rem 0.5rem;
+          outline: none;
+          color: inherit;
+  
+          &.complete { text-decoration: line-through; }
+        }
+      }
+  
+      .task-input { margin-top: 0.25rem; }
+    }
+  }
+  
+  @media (min-width: 416px) {
+    .container { 
+      padding: 1.5rem;
+      margin: 1.5rem auto;
+      max-width: 400px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .container .list-buttons button {
+      font-size: 0.9em;
+      min-height: 1.75rem;
+      border-radius: 0.875rem;
+    }
+
+    .toggle {
+      font-size: 1.1em;
+    }
+  }
+}

@@ -122,7 +122,7 @@ export default function TodoList() {
         uncheckAll={uncheckAllTasks}
         removeAll={removeAllTasks}
       />
-      <div>
+      <div id='tasks-container'>
         <TaskItemList 
           tasks={tasks}
           toggleComplete={toggleComplete}
