@@ -33,16 +33,16 @@ body {
         border: 1px solid get-color(grayscale, light);
         min-height: 1.5rem;
         border-radius: 0.75rem;
-
+        font-family: 'Arimo', Arial, sans-serif;
         padding: 1px 6px;
         font-size: 83.33%;
         $background-color: get-color(grayscale, lighter);
         background-color: $background-color;
+
         &:disabled { 
           background-color: adjust-color($color: $background-color, $lightness: 4%);
           color: get-color(primary, lighter);
         }
-        font-family: 'Arimo', Arial, sans-serif;
       }
     }
     
