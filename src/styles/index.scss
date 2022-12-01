@@ -22,6 +22,7 @@ body {
   
     h2 {
       margin: 0;
+      font-size: 1.75rem;
     }
   
     .list-buttons {
@@ -30,8 +31,18 @@ body {
       button {
         color: get-color(primary, normal);
         border: 1px solid get-color(grayscale, light);
-        border-radius: 0.25rem;
         min-height: 1.5rem;
+        border-radius: 0.75rem;
+
+        padding: 1px 6px;
+        font-size: 83.33%;
+        $background-color: get-color(grayscale, lighter);
+        background-color: $background-color;
+        &:disabled { 
+          background-color: adjust-color($color: $background-color, $lightness: 4%);
+          color: get-color(primary, lighter);
+        }
+        font-family: 'Arimo', Arial, sans-serif;
       }
     }
     
@@ -83,6 +94,18 @@ body {
       padding: 1.5rem;
       margin: 1.5rem auto;
       max-width: 400px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .container .list-buttons button {
+      font-size: 0.9em;
+      min-height: 1.75rem;
+      border-radius: 0.875rem;
+    }
+
+    .toggle {
+      font-size: 1.1em;
     }
   }
 }

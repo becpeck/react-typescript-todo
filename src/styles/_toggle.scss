@@ -1,7 +1,7 @@
 @import 'utilities';
 
 .toggle {
-  $toggle-height: 1rem;
+  $toggle-height: 1em;
   $toggle-width: $toggle-height * 2;
   $slider-size: $toggle-height * 0.7;
   $slider-offset: calc(($toggle-height - $slider-size) / 2);
