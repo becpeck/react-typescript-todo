@@ -6,6 +6,7 @@ import TaskButtons from './TaskButtons';
 import TaskItemList from './TaskItemList';
 import TaskInput from './TaskInput';
 import SortToggle from './SortToggle';
+import ThemePalette from './ThemePalette/ThemePalette';
 
 import { Task } from './TodoList.interface';
 
@@ -16,6 +17,13 @@ export default function TodoList() {
   const [tasks, setTasks] = useTaskState(sampleTasks)
   const [newTaskInput, setNewTaskInput] = useState(initialNewTaskInput);
   const [sortOn, setSortOn] = useSortState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
+
+
+  // Theme State functions
+  const togglePaletteOpen = () => {
+    setPaletteOpen(!paletteOpen);
+  }
 
 
   // Task State functions
@@ -111,6 +119,9 @@ export default function TodoList() {
 
   return (
     <div className='widget-todo container'>
+      <ThemePalette
+        togglePaletteOpen={togglePaletteOpen}
+      />
       <h2>To-do List</h2>
       <SortToggle 
         sortOn={sortOn}

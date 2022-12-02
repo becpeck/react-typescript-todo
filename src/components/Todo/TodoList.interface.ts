@@ -49,3 +49,7 @@ export interface SortToggleProps {
     sortOn: boolean;
     toggleSort: React.ChangeEventHandler<HTMLInputElement>;
 }
+
+export interface ThemePaletteProps {
+    togglePaletteOpen: () => void;
+}
