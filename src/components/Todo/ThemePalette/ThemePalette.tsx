@@ -1,6 +1,8 @@
 import React from 'react';
 import { Palette } from 'react-bootstrap-icons';
 
+import ColorDotList from './ColorDotList';
+
 import { ThemePaletteProps } from '../TodoList.interface';
 
 export default function ThemePalette(props: ThemePaletteProps) {
@@ -11,6 +13,14 @@ export default function ThemePalette(props: ThemePaletteProps) {
             <div className='icon palette'>
                 <Palette onClick={togglePaletteOpen}/>
             </div>
+            { paletteOpen &&
+                <div className='theme-options'>
+                    <ColorDotList
+                        themeColors={themeColors}
+                        handleChange={handleChangeColor}
+                    />
+                </div>
+            }
         </>
     );
 }
