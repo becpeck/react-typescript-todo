@@ -1,0 +1,11 @@
+.icon.palette {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  height: 2em;
+  width: 2em;
+
+  & svg {
+    font-size: 1.25em;
+  }
+}

@@ -1,5 +1,6 @@
 @use 'toggle';
 @use 'icons';
+@use 'theme-palette';
 @import 'utilities';
 
 * {
@@ -19,6 +20,7 @@ body {
     background-color: get-color(grayscale, white);
     border: 1px solid get-color(grayscale, light);
     border-radius: 1rem;
+    position: relative;
   
     h2 {
       margin: 0;
