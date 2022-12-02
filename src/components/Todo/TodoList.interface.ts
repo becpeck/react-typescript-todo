@@ -55,9 +55,21 @@ export interface ThemeColor {
     active: boolean
 }
 
+interface ColorProps {
+    handleChange: React.ChangeEventHandler<HTMLInputElement>;
+}
+
+export interface ColorDotProps extends ColorProps {
+    themeColor: ThemeColor;
+}
+
+export interface ColorDotListProps extends ColorProps {
+    themeColors: ThemeColor[];
+}
+
 export interface ThemePaletteProps {
     paletteOpen: boolean;
     themeColors: ThemeColor[];
     togglePaletteOpen: () => void;
-    handleChangeColor: React.ChangeEventHandler<HTMLInputElement>;
+    handleChangeColor: ColorProps['handleChange'];
 }
