@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { Task, NewTask } from './TodoList.interface';
+import { Task, NewTask, ThemeColor } from './TodoList.interface';
 
 export const initialNewTaskInput: NewTask = { text: '', editOn: false };
 
@@ -38,3 +38,30 @@ export const ICONS = {
     PLUS: 'plus',
     NO_ICON: 'no-icon'
 } as const;
+
+export const initialThemeColors: ThemeColor[] = [
+    {
+        color: 'red',
+        active: true
+    },
+    {
+        color: 'yellow',
+        active: false
+    },
+    {
+        color: 'green',
+        active: false
+    },
+    {
+        color: 'blue',
+        active: false
+    },
+    {
+        color: 'violet',
+        active: false
+    },
+    {
+        color: 'gray',
+        active: false
+    }
+];

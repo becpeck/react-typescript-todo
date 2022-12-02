@@ -50,6 +50,14 @@ export interface SortToggleProps {
     toggleSort: React.ChangeEventHandler<HTMLInputElement>;
 }
 
+export interface ThemeColor {
+    color: string;
+    active: boolean
+}
+
 export interface ThemePaletteProps {
+    paletteOpen: boolean;
+    themeColors: ThemeColor[];
     togglePaletteOpen: () => void;
+    handleChangeColor: React.ChangeEventHandler<HTMLInputElement>;
 }

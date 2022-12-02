@@ -8,9 +8,9 @@ import TaskInput from './TaskInput';
 import SortToggle from './SortToggle';
 import ThemePalette from './ThemePalette/ThemePalette';
 
-import { Task } from './TodoList.interface';
+import { Task, ThemeColor } from './TodoList.interface';
 
-import { sampleTasks, initialNewTaskInput } from './constants';
+import { sampleTasks, initialNewTaskInput, initialThemeColors } from './constants';
 
 
 export default function TodoList() {
@@ -18,11 +18,20 @@ export default function TodoList() {
   const [newTaskInput, setNewTaskInput] = useState(initialNewTaskInput);
   const [sortOn, setSortOn] = useSortState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
-
+  const [themeColors, setThemeColors] = useState<ThemeColor[]>(initialThemeColors);
+  
 
   // Theme State functions
   const togglePaletteOpen = () => {
     setPaletteOpen(!paletteOpen);
+  }
+
+  const handleChangeColor = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setThemeColors(themeColors.map(themeColor => (
+      themeColor.color === evt.target.value
+        ? {...themeColor, active: true}
+        : {...themeColor, active: false}
+    )));
   }
 
 
@@ -120,7 +129,10 @@ export default function TodoList() {
   return (
     <div className='widget-todo container'>
       <ThemePalette
+        paletteOpen={paletteOpen}
+        themeColors={themeColors}
         togglePaletteOpen={togglePaletteOpen}
+        handleChangeColor={handleChangeColor}
       />
       <h2>To-do List</h2>
       <SortToggle 

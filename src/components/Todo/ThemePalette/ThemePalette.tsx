@@ -4,7 +4,7 @@ import { Palette } from 'react-bootstrap-icons';
 import { ThemePaletteProps } from '../TodoList.interface';
 
 export default function ThemePalette(props: ThemePaletteProps) {
-    const { togglePaletteOpen } = props;
+    const { paletteOpen, themeColors, togglePaletteOpen, handleChangeColor } = props;
 
     return (
         <>
