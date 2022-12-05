@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { Task, NewTask, ThemeColor } from './TodoList.interface';
+import { Task, NewTask, ThemeColor, ThemeMode } from './TodoList.interface';
 
 export const initialNewTaskInput: NewTask = { text: '', editOn: false };
 
@@ -65,3 +65,13 @@ export const initialThemeColors: ThemeColor[] = [
         active: false
     }
 ];
+
+export const THEME_MODES = {
+    AUTO: 'auto',
+    LIGHT: 'light',
+    DARK: 'dark',
+} as const;
+
+export const initialThemeMode: ThemeMode = {
+    mode: THEME_MODES.AUTO
+};

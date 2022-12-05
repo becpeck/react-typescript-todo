@@ -1,5 +1,5 @@
 import React from "react";
-import { ICONS } from "./constants";
+import { ICONS, THEME_MODES } from "./constants";
 
 export interface NewTask {
     text: string;
@@ -67,9 +67,15 @@ export interface ColorDotListProps extends ColorProps {
     themeColors: ThemeColor[];
 }
 
+export interface ThemeMode {
+    mode: typeof THEME_MODES[keyof typeof THEME_MODES];
+}
+
 export interface ThemePaletteProps {
     paletteOpen: boolean;
     themeColors: ThemeColor[];
+    themeMode: ThemeMode;
     togglePaletteOpen: () => void;
     handleChangeColor: ColorProps['handleChange'];
+    setMode: (mode: ThemeMode) => void;
 }

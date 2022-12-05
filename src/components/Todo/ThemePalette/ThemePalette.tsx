@@ -6,7 +6,7 @@ import ColorDotList from './ColorDotList';
 import { ThemePaletteProps } from '../TodoList.interface';
 
 export default function ThemePalette(props: ThemePaletteProps) {
-    const { paletteOpen, themeColors, togglePaletteOpen, handleChangeColor } = props;
+    const { paletteOpen, themeColors, themeMode, togglePaletteOpen, handleChangeColor, setMode } = props;
 
     return (
         <>

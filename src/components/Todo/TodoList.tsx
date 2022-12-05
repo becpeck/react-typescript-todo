@@ -8,9 +8,9 @@ import TaskInput from './TaskInput';
 import SortToggle from './SortToggle';
 import ThemePalette from './ThemePalette/ThemePalette';
 
-import { Task, ThemeColor } from './TodoList.interface';
+import { Task, ThemeColor, ThemeMode } from './TodoList.interface';
 
-import { sampleTasks, initialNewTaskInput, initialThemeColors } from './constants';
+import { sampleTasks, initialNewTaskInput, initialThemeColors, initialThemeMode } from './constants';
 
 
 export default function TodoList() {
@@ -19,6 +19,7 @@ export default function TodoList() {
   const [sortOn, setSortOn] = useSortState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [themeColors, setThemeColors] = useState<ThemeColor[]>(initialThemeColors);
+  const [themeMode, setThemeMode] = useState<ThemeMode>(initialThemeMode);
   
 
   // Theme State functions
@@ -32,6 +33,10 @@ export default function TodoList() {
         ? {...themeColor, active: true}
         : {...themeColor, active: false}
     )));
+  }
+
+  const setMode = (mode: ThemeMode) => {
+    setThemeMode(mode);
   }
 
 
@@ -131,8 +136,10 @@ export default function TodoList() {
       <ThemePalette
         paletteOpen={paletteOpen}
         themeColors={themeColors}
+        themeMode={themeMode}
         togglePaletteOpen={togglePaletteOpen}
         handleChangeColor={handleChangeColor}
+        setMode={setMode}
       />
       <h2>To-do List</h2>
       <SortToggle 
