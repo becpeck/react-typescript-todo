@@ -1,3 +1,5 @@
+@import 'utilities';
+
 .icon.palette {
   position: absolute;
   top: 0.5rem;
@@ -5,7 +7,97 @@
   height: 2em;
   width: 2em;
 
-  & svg {
+  svg {
     font-size: 1.25em;
+  }
+}
+
+.theme-options {
+
+  #color-dot-list {
+    $dot-height: 1.5rem;
+
+    @include flex($justify: space-between, $align: center, $gap: 0.5rem);
+
+    .color-dot {
+      @include flex($justify: center, $align: center);
+
+      width: $dot-height;
+      height: $dot-height;
+      border-radius: calc($dot-height / 2);
+
+      $background-color: get-color(primary, normal);
+      $border-color: adjust-color($color: $background-color, $lightness: -10%);
+
+      .color-input {
+        display: none;
+      }
+
+      #color-dot-active {
+        display: block;
+        width: calc($dot-height / 2);
+        height: calc($dot-height / 2);
+        border-radius: calc($dot-height / 2);
+        background-color: get-color(grayscale, white);
+      }
+
+      // TODO: better application of color shift
+      &#red {
+        background-color: $background-color;
+        border: 1px solid $border-color;
+
+        #color-dot-active { border: 1px solid $border-color; }
+      }
+
+      &#yellow {
+        $background-color: change-color($color: $background-color, $hue: 50);
+        $border-color: change-color($color: $border-color, $hue: 50);
+
+        background-color: $background-color;
+        border: 1px solid $border-color;
+
+        #color-dot-active { border: 1px solid $border-color; }
+      }
+
+      &#green {
+        $background-color: change-color($color: $background-color, $hue: 115);
+        $border-color: change-color($color: $border-color, $hue: 115);
+
+        background-color: $background-color;
+        border: 1px solid $border-color;
+
+        #color-dot-active { border: 1px solid $border-color; }
+      }
+
+      &#blue {
+        $background-color: change-color($color: $background-color, $hue: 180);
+        $border-color: change-color($color: $border-color, $hue: 180);
+
+        background-color: $background-color;
+        border: 1px solid $border-color;
+
+        #color-dot-active { border: 1px solid $border-color; }
+      }
+
+      &#violet {
+        $background-color: change-color($color: $background-color, $hue: 290);
+        $border-color: change-color($color: $border-color, $hue: 290);
+
+        background-color: $background-color;
+        border: 1px solid $border-color;
+
+        #color-dot-active { border: 1px solid $border-color; }
+      }
+
+      &#gray {
+        $background-color: change-color($color: $background-color, $saturation: 0%);
+        $border-color: change-color($color: $border-color, $saturation: 0%);
+
+        background-color: $background-color;
+        border: 1px solid $border-color;
+
+        #color-dot-active { border: 1px solid $border-color; }
+      }
+    }
   }
 }
