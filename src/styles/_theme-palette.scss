@@ -13,6 +13,11 @@
 }
 
 .theme-options {
+  @include flex($dir: column, $justify: space-between, $align: center, $gap: 0.75rem);
+
+  width: calc(100% + 2rem);
+  border-bottom: 1px solid get-color(grayscale, light);
+  padding-bottom: 1.5rem;
 
   #color-dot-list {
     $dot-height: 1.5rem;
@@ -100,4 +105,6 @@
       }
     }
   }
+
+  #theme-mode-buttons { @include flex($gap: 0.5rem); }
 }
