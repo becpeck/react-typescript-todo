@@ -72,6 +72,4 @@ export const THEME_MODES = {
     DARK: 'dark',
 } as const;
 
-export const initialThemeMode: ThemeMode = {
-    mode: THEME_MODES.AUTO
-};
+export const initialThemeMode: ThemeMode = THEME_MODES.AUTO;

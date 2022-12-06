@@ -67,8 +67,11 @@ export interface ColorDotListProps extends ColorProps {
     themeColors: ThemeColor[];
 }
 
-export interface ThemeMode {
-    mode: typeof THEME_MODES[keyof typeof THEME_MODES];
+export type ThemeMode = typeof THEME_MODES[keyof typeof THEME_MODES];
+
+export interface ThemeButtonsProps {
+    themeMode: ThemeMode;
+    setMode: (mode: ThemeMode) => void;
 }
 
 export interface ThemePaletteProps {
@@ -77,5 +80,5 @@ export interface ThemePaletteProps {
     themeMode: ThemeMode;
     togglePaletteOpen: () => void;
     handleChangeColor: ColorProps['handleChange'];
-    setMode: (mode: ThemeMode) => void;
+    setMode: ThemeButtonsProps['setMode'];
 }
