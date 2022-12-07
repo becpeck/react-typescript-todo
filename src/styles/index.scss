@@ -7,26 +7,43 @@
   box-sizing: border-box;
 }
 
+[data-theme-mode='light'] {
+  &[data-theme-color='red']     { @include apply-theme(light, red); }
+  &[data-theme-color='yellow']  { @include apply-theme(light, yellow); }
+  &[data-theme-color='green']   { @include apply-theme(light, green); }
+  &[data-theme-color='blue']    { @include apply-theme(light, blue); }
+  &[data-theme-color='violet']  { @include apply-theme(light, violet); }
+  &[data-theme-color='gray']    { @include apply-theme(light, gray); }
+}
+
+[data-theme-mode='dark'] {
+  &[data-theme-color='red']     { @include apply-theme(dark, red); }
+  &[data-theme-color='yellow']  { @include apply-theme(dark, yellow); }
+  &[data-theme-color='green']   { @include apply-theme(dark, green); }
+  &[data-theme-color='blue']    { @include apply-theme(dark, blue); }
+  &[data-theme-color='violet']  { @include apply-theme(dark, violet); }
+  &[data-theme-color='gray']    { @include apply-theme(dark, gray); }
+}
+
 button {
-  color: get-color(primary, normal);
-  border: 1px solid get-color(grayscale, light);
+  color: var(--text-button);
+  border: 1px solid var(--element-border);
   min-height: 1.5rem;
   border-radius: 0.75rem;
   font-family: 'Arimo', Arial, sans-serif;
   padding: 1px 6px;
   font-size: 83.33%;
-  $background-color: get-color(grayscale, lighter);
-  background-color: $background-color;
+  background-color: var(--element-highlight);
 
   &:disabled { 
-    background-color: adjust-color($color: $background-color, $lightness: 4%);
-    color: get-color(primary, lighter);
+    background-color: var(--element-dimmed);
+    color: var(--element-border);
   }
 }
 
 body {
-  background-color: get-color(grayscale, lighter);
-  color: get-color(primary, dark);
+  background-color: var(--element-highlight);
+  color: var(--text);
   font-family: 'Bitter', serif;
   margin: 0;
 
@@ -34,8 +51,8 @@ body {
     @include flex($dir: column, $justify: center, $align: center, $gap: 1rem);
     margin: 0.5rem;
     padding: 1.5rem 1rem 1rem;
-    background-color: get-color(grayscale, white);
-    border: 1px solid get-color(grayscale, light);
+    background-color: var(--container-bg);
+    border: 1px solid var(--element-border);
     border-radius: 1rem;
     position: relative;
   
@@ -52,16 +69,16 @@ body {
   
       #task-list {
         @include flex($dir: column, $align: stretch, $gap: 0.25rem);
-        border-bottom: 1px solid get-color(primary, lighter);
+        border-bottom: 1px solid var(--text-dimmed);
         padding-bottom: 0.25rem;
       }
   
       .item-line {
         @include flex($justify: space-between, $align: center, $gap: 0.25rem);
   
-        &.complete { color: get-color(primary, lighter); }
+        &.complete { color: var(--text-dimmed); }
   
-        &.edit .item-text { background-color: get-color(grayscale, lighter); }
+        &.edit .item-text { background-color: var(--element-highlight); }
         
         .icon {
           height: 1.75em;
@@ -80,6 +97,7 @@ body {
           padding: 0.25rem 0.5rem;
           outline: none;
           color: inherit;
+          background-color: inherit;
   
           &.complete { text-decoration: line-through; }
         }
