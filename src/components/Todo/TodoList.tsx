@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useTaskState, useSortState } from '../../hooks/useLocalStorage';
 
@@ -10,7 +10,7 @@ import ThemePalette from './ThemePalette/ThemePalette';
 
 import { Task, ThemeColor, ThemeMode } from './TodoList.interface';
 
-import { sampleTasks, initialNewTaskInput, initialThemeColors, initialThemeMode } from './constants';
+import { sampleTasks, initialNewTaskInput, initialThemeColors, initialThemeMode, THEME_MODES } from './constants';
 
 
 export default function TodoList() {
@@ -20,7 +20,34 @@ export default function TodoList() {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [themeColors, setThemeColors] = useState<ThemeColor[]>(initialThemeColors);
   const [themeMode, setThemeMode] = useState<ThemeMode>(initialThemeMode);
+
+
+  useEffect(() => {
+    const color = getColorTag(themeColors);
+    document.body.setAttribute('data-theme-color', color);
+  }, [themeColors]);
   
+  useEffect(() => {
+    const mode = getModeTag(themeMode);
+    document.body.setAttribute('data-theme-mode', mode);
+  }, [themeMode])
+
+
+  // useEffect helper functions
+  const getColorTag = (themeColors: ThemeColor[]) => {
+    const activeThemeColor = themeColors.filter(themeColor => themeColor.active);
+    return activeThemeColor[0].color;
+  }
+
+  const getModeTag = (themeMode: ThemeMode) => {
+    if (themeMode === THEME_MODES.AUTO) {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return prefersDark ? THEME_MODES.DARK : THEME_MODES.LIGHT;
+    } else {
+      return themeMode;
+    }
+  }
+
 
   // Theme State functions
   const togglePaletteOpen = () => {
