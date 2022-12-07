@@ -15,3 +15,35 @@ $color: (
     primary: $color-primary,
     grayscale: $color-grayscale
 );
+
+$base-colors: (
+    light: (
+        text:               (h: 0, s: 20%, l: 26%),
+        text-button:        (h: 0, s: 15%, l: 45%),
+        text-dimmed:        (h: 0, s: 10%, l: 57%),
+        element-border:     (h: 0, s: 10%, l: 82%),
+        element-highlight:  (h: 0, s: 10%, l: 94%),
+        element-dimmed:     (h: 0, s: 10%, l: 98%),
+        container-bg:       (h: 0, s: 10%, l: 100%),
+        toggle-border:      (h: 0, s: 10%, l: 50%),
+    ),
+    dark: (
+        text:               (h: 0, s: 20%, l: 74%),
+        text-button:        (h: 0, s: 15%, l: 55%),
+        text-dimmed:        (h: 0, s: 10%, l: 43%),
+        element-border:     (h: 0, s: 10%, l: 28%),
+        element-highlight:  (h: 0, s: 10%, l: 16%),
+        element-dimmed:     (h: 0, s: 10%, l: 12%),
+        container-bg:       (h: 0, s: 10%, l: 10%),
+        toggle-border:      (h: 0, s: 10%, l: 50%),
+    ),
+);
+
+$color-shifts: (
+    red: 0,
+    yellow: 50,
+    green: 115,
+    blue: 180,
+    violet: 290,
+    gray: 0%,
+);
