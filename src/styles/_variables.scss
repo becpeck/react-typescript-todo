@@ -21,6 +21,17 @@ $base-colors: (
     ),
 );
 
+$base-color-dot: (
+    light: (
+        dot-bg:  (h: 0, s: 15%, l: 50%),
+        dot-border: (h: 0, s: 15%, l: 40%),
+    ),
+    dark: (
+        dot-bg:  (h: 0, s: 15%, l: 50%),
+        dot-border: (h: 0, s: 15%, l: 60%),
+    ),
+);
+
 $color-shifts: (
     red: 0,
     yellow: 50,

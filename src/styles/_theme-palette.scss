@@ -7,9 +7,7 @@
   height: 2em;
   width: 2em;
 
-  svg {
-    font-size: 1.25em;
-  }
+  svg { font-size: 1.25em; }
 }
 
 .theme-options {
@@ -20,9 +18,8 @@
   padding-bottom: 1.5rem;
 
   #color-dot-list {
-    $dot-height: 1.5rem;
-
     @include flex($justify: space-between, $align: center, $gap: 0.5rem);
+    $dot-height: 1.5rem;
 
     .color-dot {
       @include flex($justify: center, $align: center);
@@ -31,12 +28,7 @@
       height: $dot-height;
       border-radius: calc($dot-height / 2);
 
-      $background-color: hsl(0, 15%, 45%); // TODO: add new map for ColorDot colors
-      $border-color: adjust-color($color: $background-color, $lightness: -10%);
-
-      .color-input {
-        display: none;
-      }
+      .color-input { display: none; }
 
       #color-dot-active {
         display: block;
@@ -45,66 +37,28 @@
         border-radius: calc($dot-height / 2);
         background-color: var(--container-bg);
       }
-
-      // TODO: better application of color shift
-      &#red {
-        background-color: $background-color;
-        border: 1px solid $border-color;
-
-        #color-dot-active { border: 1px solid $border-color; }
-      }
-
-      &#yellow {
-        $background-color: change-color($color: $background-color, $hue: 50);
-        $border-color: change-color($color: $border-color, $hue: 50);
-
-        background-color: $background-color;
-        border: 1px solid $border-color;
-
-        #color-dot-active { border: 1px solid $border-color; }
-      }
-
-      &#green {
-        $background-color: change-color($color: $background-color, $hue: 115);
-        $border-color: change-color($color: $border-color, $hue: 115);
-
-        background-color: $background-color;
-        border: 1px solid $border-color;
-
-        #color-dot-active { border: 1px solid $border-color; }
-      }
-
-      &#blue {
-        $background-color: change-color($color: $background-color, $hue: 180);
-        $border-color: change-color($color: $border-color, $hue: 180);
-
-        background-color: $background-color;
-        border: 1px solid $border-color;
-
-        #color-dot-active { border: 1px solid $border-color; }
-      }
-
-      &#violet {
-        $background-color: change-color($color: $background-color, $hue: 290);
-        $border-color: change-color($color: $border-color, $hue: 290);
-
-        background-color: $background-color;
-        border: 1px solid $border-color;
-
-        #color-dot-active { border: 1px solid $border-color; }
-      }
-
-      &#gray {
-        $background-color: change-color($color: $background-color, $saturation: 0%);
-        $border-color: change-color($color: $border-color, $saturation: 0%);
-
-        background-color: $background-color;
-        border: 1px solid $border-color;
-
-        #color-dot-active { border: 1px solid $border-color; }
-      }
     }
   }
 
   #theme-mode-buttons { @include flex($gap: 0.5rem); }
+}
+
+[data-theme-mode='light'] .color-dot {
+  $dot-theme: get-dot-theme('light');
+
+  @each $color-name, $color-values in $dot-theme {
+    &##{'' + $color-name} {
+      @include apply-dot-theme(light, $color-name);
+    }
+  }
+}
+
+[data-theme-mode='dark'] .color-dot {
+  $dot-theme: get-dot-theme('dark');
+
+  @each $color-name, $color-values in $dot-theme {
+    &##{'' + $color-name} {
+      @include apply-dot-theme(dark, $color-name);
+    }
+  }
 }
