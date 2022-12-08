@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
-import { useTaskState, useSortState } from '../../hooks/useLocalStorage';
+import { useTaskState, useSortState, useThemeColorState, useThemeModeState } from '../../hooks/useLocalStorage';
 
 import TaskButtons from './TaskButtons';
 import TaskItemList from './TaskItemList';
@@ -18,8 +18,8 @@ export default function TodoList() {
   const [newTaskInput, setNewTaskInput] = useState(initialNewTaskInput);
   const [sortOn, setSortOn] = useSortState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
-  const [themeColors, setThemeColors] = useState<ThemeColor[]>(initialThemeColors);
-  const [themeMode, setThemeMode] = useState<ThemeMode>(initialThemeMode);
+  const [themeColors, setThemeColors] = useThemeColorState(initialThemeColors);
+  const [themeMode, setThemeMode] = useThemeModeState(initialThemeMode);
 
 
   useEffect(() => {
