@@ -16,7 +16,7 @@
   @include flex($dir: column, $justify: space-between, $align: center, $gap: 0.75rem);
 
   width: calc(100% + 2rem);
-  border-bottom: 1px solid get-color(grayscale, light);
+  border-bottom: 1px solid var(--element-border);
   padding-bottom: 1.5rem;
 
   #color-dot-list {
@@ -31,7 +31,7 @@
       height: $dot-height;
       border-radius: calc($dot-height / 2);
 
-      $background-color: get-color(primary, normal);
+      $background-color: hsl(0, 15%, 45%); // TODO: add new map for ColorDot colors
       $border-color: adjust-color($color: $background-color, $lightness: -10%);
 
       .color-input {
@@ -43,7 +43,7 @@
         width: calc($dot-height / 2);
         height: calc($dot-height / 2);
         border-radius: calc($dot-height / 2);
-        background-color: get-color(grayscale, white);
+        background-color: var(--container-bg);
       }
 
       // TODO: better application of color shift

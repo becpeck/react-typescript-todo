@@ -14,13 +14,13 @@
     display: none;
 
     &:checked + .toggle-track {
-      background: get-color(primary, lighter);
-      border: 1px solid get-color(primary, light);
+      background: var(--text-dimmed);
+      border: 1px solid var(--toggle-border);
 
       .toggle-slider {
         left: calc(100% - $slider-offset + 1px);
         transform: translateX(-100%);
-        border: 1px solid get-color(primary, light);
+        border: 1px solid var(--toggle-border);
       }
     }
   }
@@ -32,8 +32,8 @@
     width: $toggle-width;
     height: $toggle-height;
     border-radius: calc($toggle-height / 2);
-    background: get-color(grayscale, lighter);
-    border: 1px solid get-color(grayscale, light);
+    background: var(--element-highlight);
+    border: 1px solid var(--element-border);
 
     .toggle-slider {
       position: absolute;
@@ -42,8 +42,8 @@
       border-radius: calc($slider-size / 2);
       top: calc($slider-offset - 1px);
       left: calc($slider-offset - 1px);
-      background: get-color(grayscale, white);
-      border: 1px solid get-color(grayscale, light);
+      background: var(--container-bg);
+      border: 1px solid var(--element-border);
     }
   }
 }
