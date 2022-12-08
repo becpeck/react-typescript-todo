@@ -4,10 +4,10 @@
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
-  height: 2em;
-  width: 2em;
+  height: 2.5em;
+  width: 2.5em;
 
-  svg { font-size: 1.25em; }
+  svg { font-size: 1.5em; }
 }
 
 .theme-options {
@@ -19,7 +19,7 @@
 
   #color-dot-list {
     @include flex($justify: space-between, $align: center, $gap: 0.5rem);
-    $dot-height: 1.5rem;
+    $dot-height: 2rem;
 
     .color-dot {
       @include flex($justify: center, $align: center);
