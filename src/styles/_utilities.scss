@@ -7,11 +7,6 @@
 	@error 'Invalid key: `#{$key}` for map. Valid keys: `#{map-keys($map)}`';
 }
 
-@function get-color($color-name, $variant: normal) {
-  $color-map: get($color, $color-name);
-  @return get($color-map, $variant);
-}
-
 @function get-theme($mode, $color) {
 	$base-values: get($base-colors, $mode);
 	$color-shift: get($color-shifts, $color);
