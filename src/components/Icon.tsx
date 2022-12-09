@@ -1,7 +1,7 @@
 import React from 'react';
 import { Square, CheckSquare, Pencil, XLg, PlusLg } from 'react-bootstrap-icons';
 
-import { IconProps } from './TodoList.interface';
+import { IconProps } from './props';
 import { ICONS } from './constants';
 
 export default function Icon(props: IconProps) {

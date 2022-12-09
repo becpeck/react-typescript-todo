@@ -1,7 +1,8 @@
 import React from 'react';
 import TaskItem from './TaskItem';
 
-import { Task, TaskItemListProps } from '../TodoList.interface';
+import { TaskItemListProps } from '../props';
+import { Task } from '../types';
 
 export default function TaskItemList(props: TaskItemListProps) {
   const { tasks, toggleComplete, removeTask, toggleEditOn, handleChange } = props;

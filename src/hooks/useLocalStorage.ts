@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Task, ThemeColor, ThemeMode } from '../components/TodoList.interface';
+import { Task, ThemeColor, ThemeMode } from '../components/types';
 import { KEYS } from './constants';
 import {
     Key,

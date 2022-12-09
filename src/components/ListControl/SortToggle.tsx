@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SortToggleProps } from '../TodoList.interface';
+import { SortToggleProps } from '../props';
 
 export default function SortToggle(props: SortToggleProps) {
   const { sortOn, toggleSort } = props;

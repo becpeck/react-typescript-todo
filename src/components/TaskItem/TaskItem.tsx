@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Icon from '../Icon';
 
-import { TaskItemProps } from '../TodoList.interface';
+import { TaskItemProps } from '../props';
 import { ICONS } from '../constants';
 
 export default function TaskItem(props: TaskItemProps) {

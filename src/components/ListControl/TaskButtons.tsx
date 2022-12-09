@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { TaskButtonProps } from '../TodoList.interface';
+import { TaskButtonsProps } from '../props';
 
-export default function TaskButtons(props: TaskButtonProps) {
+export default function TaskButtons(props: TaskButtonsProps) {
   const { tasks, checkAll, uncheckAll, removeAll } = props;
 
   const allChecked = () => (tasks.every(task => task.completed))

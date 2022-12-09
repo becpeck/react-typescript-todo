@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ColorDotProps } from '../TodoList.interface';
+import { ColorDotProps } from '../props';
 
 export default function ColorDot(props: ColorDotProps) {
     const { themeColor, handleChange } = props;

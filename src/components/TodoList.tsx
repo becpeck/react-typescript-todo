@@ -8,7 +8,7 @@ import TaskInput from './TaskInput';
 import SortToggle from './ListControl/SortToggle';
 import ThemePalette from './ThemePalette/ThemePalette';
 
-import { Task, ThemeColor, ThemeMode } from './TodoList.interface';
+import { Task, ThemeColor, ThemeMode } from './types';
 
 import { THEME_MODES } from './constants';
 import initialState from './initialState';

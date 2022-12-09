@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ThemeButtonsProps } from '../TodoList.interface';
+import { ThemeButtonsProps } from '../props';
 import { THEME_MODES } from '../constants';
 
 export default function ThemeButtons(props: ThemeButtonsProps) {
