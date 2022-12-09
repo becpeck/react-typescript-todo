@@ -1,9 +1,15 @@
 import { useState } from 'react';
-
-import { Task } from '../components/Todo/TodoList.interface';
-import { Key, UseLocalStorage, UseTaskState, UseSortState } from './hooks';
-
+import { Task, ThemeColor, ThemeMode } from '../components/Todo/TodoList.interface';
 import { KEYS } from './constants';
+import {
+    Key,
+    UseLocalStorage,
+    UseTaskState,
+    UseSortState,
+    UseThemeColorState,
+    UseThemeModeState
+} from './hooks';
+
 
 function useLocalStorage<T>(key: Key, initialValue: T): UseLocalStorage<T> {
     const [storedValue, setStoredValue] = useState<T>(() => {
@@ -19,10 +25,19 @@ function useLocalStorage<T>(key: Key, initialValue: T): UseLocalStorage<T> {
     return [storedValue, setValue];
 }
 
+
 export function useTaskState(initialTasks: Task[]): UseTaskState {
-    return useLocalStorage<Task[]>(KEYS.TASK_KEY, initialTasks)
+    return useLocalStorage<Task[]>(KEYS.TASKS, initialTasks);
 }
 
 export function useSortState(initialSortOn: boolean): UseSortState {
-    return useLocalStorage<boolean>(KEYS.SORT_KEY, initialSortOn)
+    return useLocalStorage<boolean>(KEYS.SORT_ON, initialSortOn);
+}
+
+export function useThemeColorState(initialThemeColors: ThemeColor[]): UseThemeColorState {
+    return useLocalStorage<ThemeColor[]>(KEYS.THEME_COLOR, initialThemeColors);
+}
+
+export function useThemeModeState(initialThemeMode: ThemeMode): UseThemeModeState {
+    return useLocalStorage<ThemeMode>(KEYS.THEME_MODE, initialThemeMode);
 }

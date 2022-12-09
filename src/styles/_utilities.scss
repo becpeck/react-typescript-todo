@@ -7,9 +7,74 @@
 	@error 'Invalid key: `#{$key}` for map. Valid keys: `#{map-keys($map)}`';
 }
 
-@function get-color($color-name, $variant: normal) {
-  $color-map: get($color, $color-name);
-  @return get($color-map, $variant);
+@function get-theme($mode, $color) {
+	$base-values: get($base-colors, $mode);
+	$color-shift: get($color-shifts, $color);
+	$theme-colors: ();
+	
+	@each $name, $values in $base-values {
+	  	$h: get($values, h);
+	  	$s: get($values, s);
+	  	$l: get($values, l);
+		@if #{$color} == 'gray' {
+			$new-color: hsl($h, $color-shift, $l);
+			$theme-colors: map-merge($theme-colors, ($name: $new-color));
+		} @else {
+			$new-color: hsl($color-shift, $s, $l);
+			$theme-colors: map-merge($theme-colors, ($name: $new-color));
+		}
+	}
+	@return $theme-colors;
+}
+
+@mixin apply-theme($mode, $color) {
+	$theme-colors: get-theme($mode, $color);
+	@each $name, $value in $theme-colors {
+		--#{$name}: #{$value};
+	}
+}
+
+@function get-theme-color($mode, $color, $name) {
+	$theme-colors: get-theme($mode, $color);
+	@return get($theme-colors, $name);
+}
+
+@function get-dot-theme($mode) {
+	$base-values: get($base-color-dot, $mode);
+	$dot-theme: ();
+	
+	@each $color-name, $color-shift in $color-shifts {
+		$color-values: ();
+
+		@each $name, $values in $base-values {
+			$h: get($values, h);
+			$s: get($values, s);
+			$l: get($values, l);
+		  	@if #{$color-name} == 'gray' {
+				$new-color: hsl($h, $color-shift, $l);
+				$color-values: map-merge($color-values, ($name: $new-color));
+		  	} @else {
+				$new-color: hsl($color-shift, $s, $l);
+				$color-values: map-merge($color-values, ($name: $new-color));
+		  	}
+		}
+
+		$dot-theme: map-merge($dot-theme, ($color-name: $color-values));
+	}
+
+	@return $dot-theme;
+}
+
+@mixin apply-dot-theme($mode, $color) {
+	$dot-theme: get-dot-theme($mode);
+	$dot-bg: map-get($dot-theme, $color, dot-bg);
+	$dot-border: map-get($dot-theme, $color, dot-border);
+  
+
+	background-color: $dot-bg;
+	border: 1px solid $dot-border;
+  
+	#color-dot-active { border: 1px solid $dot-border; }
 }
 
 @mixin flex($dir: row, $justify: normal, $align: normal, $gap: normal) {

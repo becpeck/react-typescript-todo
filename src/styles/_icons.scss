@@ -4,11 +4,11 @@
   @include flex($justify: center, $align: center);
   border-radius: 50%;
 
-  &:not(.no-icon):active { background-color: get-color(grayscale, lighter); }
+  &:not(.no-icon):active { background-color: var(--element-highlight); }
 
   @media (hover) {
-    &:not(.no-icon):hover { background-color: get-color(grayscale, lighter); }
-    &:not(.no-icon):active { background-color: get-color(grayscale, light); }
+    &:not(.no-icon):hover { background-color: var(--element-highlight); }
+    &:not(.no-icon):active { background-color: var(--element-border); }
   }
 
   &.empty-box, &.checked-box, &.pencil, &.x-remove { 

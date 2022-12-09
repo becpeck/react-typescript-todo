@@ -1,14 +1,51 @@
 @use 'toggle';
 @use 'icons';
+@use 'theme-palette';
 @import 'utilities';
 
 * {
   box-sizing: border-box;
 }
 
+[data-theme-mode='light'] {
+  $theme-colors: map-keys($color-shifts);
+
+  @each $color-name, $color-value in $theme-colors {
+    &[data-theme-color=#{'' + $color-name}] {
+      @include apply-theme(light, $color-name);
+    }
+  }
+}
+
+[data-theme-mode='dark'] {
+  $theme-colors: map-keys($color-shifts);
+
+  @each $color-name, $color-value in $theme-colors {
+    &[data-theme-color=#{'' + $color-name}] {
+      @include apply-theme(dark, $color-name);
+    }
+  }
+}
+
+button {
+  color: var(--text-button);
+  border: 1px solid var(--element-border);
+  min-height: 1.5rem;
+  border-radius: 0.75rem;
+  font-family: 'Arimo', Arial, sans-serif;
+  padding: 1px 6px;
+  font-size: 83.33%;
+  background-color: var(--element-highlight);
+
+  &:disabled { 
+    background-color: var(--element-dimmed);
+    color: var(--element-border);
+  }
+}
+
 body {
-  background-color: get-color(grayscale, lighter);
-  color: get-color(primary, dark);
+  background-color: var(--element-highlight);
+  color: var(--text);
   font-family: 'Bitter', serif;
   margin: 0;
 
@@ -16,35 +53,17 @@ body {
     @include flex($dir: column, $justify: center, $align: center, $gap: 1rem);
     margin: 0.5rem;
     padding: 1.5rem 1rem 1rem;
-    background-color: get-color(grayscale, white);
-    border: 1px solid get-color(grayscale, light);
+    background-color: var(--container-bg);
+    border: 1px solid var(--element-border);
     border-radius: 1rem;
+    position: relative;
   
     h2 {
       margin: 0;
       font-size: 1.75rem;
     }
   
-    .list-buttons {
-      @include flex($gap: 0.5rem);
-  
-      button {
-        color: get-color(primary, normal);
-        border: 1px solid get-color(grayscale, light);
-        min-height: 1.5rem;
-        border-radius: 0.75rem;
-        font-family: 'Arimo', Arial, sans-serif;
-        padding: 1px 6px;
-        font-size: 83.33%;
-        $background-color: get-color(grayscale, lighter);
-        background-color: $background-color;
-
-        &:disabled { 
-          background-color: adjust-color($color: $background-color, $lightness: 4%);
-          color: get-color(primary, lighter);
-        }
-      }
-    }
+    .list-buttons { @include flex($gap: 0.5rem); }
     
     #tasks-container {
       @include flex($dir: column, $align: stretch);
@@ -52,16 +71,16 @@ body {
   
       #task-list {
         @include flex($dir: column, $align: stretch, $gap: 0.25rem);
-        border-bottom: 1px solid get-color(primary, lighter);
+        border-bottom: 1px solid var(--text-dimmed);
         padding-bottom: 0.25rem;
       }
   
       .item-line {
         @include flex($justify: space-between, $align: center, $gap: 0.25rem);
   
-        &.complete { color: get-color(primary, lighter); }
+        &.complete { color: var(--text-dimmed); }
   
-        &.edit .item-text { background-color: get-color(grayscale, lighter); }
+        &.edit .item-text { background-color: var(--element-highlight); }
         
         .icon {
           height: 1.75em;
@@ -80,6 +99,7 @@ body {
           padding: 0.25rem 0.5rem;
           outline: none;
           color: inherit;
+          background-color: inherit;
   
           &.complete { text-decoration: line-through; }
         }
@@ -94,11 +114,13 @@ body {
       padding: 1.5rem;
       margin: 1.5rem auto;
       max-width: 400px;
+      
+      .theme-options { width: calc(100% + 3rem); }
     }
   }
 
   @media (max-width: 900px) {
-    .container .list-buttons button {
+    .container button {
       font-size: 0.9em;
       min-height: 1.75rem;
       border-radius: 0.875rem;

@@ -1,17 +1,42 @@
-$color-primary: (
-    lighter: hsl(0, 5%, 57%),
-    light: hsl(0, 5%, 50%),
-    normal: hsl(0, 7%, 45%),
-    dark: hsl(0, 11%, 26%),
+$base-colors: (
+    light: (
+        text:               (h: 0, s: 20%, l: 26%),
+        text-button:        (h: 0, s: 15%, l: 45%),
+        text-dimmed:        (h: 0, s: 10%, l: 57%),
+        element-border:     (h: 0, s: 10%, l: 82%),
+        element-highlight:  (h: 0, s: 10%, l: 94%),
+        element-dimmed:     (h: 0, s: 10%, l: 98%),
+        container-bg:       (h: 0, s: 10%, l: 100%),
+        toggle-border:      (h: 0, s: 10%, l: 50%),
+    ),
+    dark: (
+        text:               (h: 0, s: 20%, l: 74%),
+        text-button:        (h: 0, s: 15%, l: 55%),
+        text-dimmed:        (h: 0, s: 10%, l: 43%),
+        element-border:     (h: 0, s: 10%, l: 28%),
+        element-highlight:  (h: 0, s: 10%, l: 16%),
+        element-dimmed:     (h: 0, s: 10%, l: 12%),
+        container-bg:       (h: 0, s: 10%, l: 10%),
+        toggle-border:      (h: 0, s: 10%, l: 50%),
+    ),
 );
 
-$color-grayscale: (
-    white: hsl(0, 0%, 100%),
-    lighter: hsl(0, 0%, 94%),
-    light: hsl(0, 0%, 82%),
+$base-color-dot: (
+    light: (
+        dot-bg:  (h: 0, s: 15%, l: 50%),
+        dot-border: (h: 0, s: 15%, l: 40%),
+    ),
+    dark: (
+        dot-bg:  (h: 0, s: 15%, l: 50%),
+        dot-border: (h: 0, s: 15%, l: 60%),
+    ),
 );
 
-$color: (
-    primary: $color-primary,
-    grayscale: $color-grayscale
+$color-shifts: (
+    red: 0,
+    yellow: 50,
+    green: 115,
+    blue: 180,
+    violet: 290,
+    gray: 0%,
 );

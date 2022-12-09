@@ -1,0 +1,64 @@
+@import 'utilities';
+
+.icon.palette {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  height: 2.5em;
+  width: 2.5em;
+
+  svg { font-size: 1.5em; }
+}
+
+.theme-options {
+  @include flex($dir: column, $justify: space-between, $align: center, $gap: 0.75rem);
+
+  width: calc(100% + 2rem);
+  border-bottom: 1px solid var(--element-border);
+  padding-bottom: 1.5rem;
+
+  #color-dot-list {
+    @include flex($justify: space-between, $align: center, $gap: 0.5rem);
+    $dot-height: 2rem;
+
+    .color-dot {
+      @include flex($justify: center, $align: center);
+
+      width: $dot-height;
+      height: $dot-height;
+      border-radius: calc($dot-height / 2);
+
+      .color-input { display: none; }
+
+      #color-dot-active {
+        display: block;
+        width: calc($dot-height / 2);
+        height: calc($dot-height / 2);
+        border-radius: calc($dot-height / 2);
+        background-color: var(--container-bg);
+      }
+    }
+  }
+
+  #theme-mode-buttons { @include flex($gap: 0.5rem); }
+}
+
+[data-theme-mode='light'] .color-dot {
+  $dot-theme: get-dot-theme('light');
+
+  @each $color-name, $color-values in $dot-theme {
+    &##{'' + $color-name} {
+      @include apply-dot-theme(light, $color-name);
+    }
+  }
+}
+
+[data-theme-mode='dark'] .color-dot {
+  $dot-theme: get-dot-theme('dark');
+
+  @each $color-name, $color-values in $dot-theme {
+    &##{'' + $color-name} {
+      @include apply-dot-theme(dark, $color-name);
+    }
+  }
+}

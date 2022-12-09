@@ -1,5 +1,5 @@
 import React from "react";
-import { ICONS } from "./constants";
+import { ICONS, THEME_MODES } from "./constants";
 
 export interface NewTask {
     text: string;
@@ -48,4 +48,37 @@ export interface TaskButtonProps {
 export interface SortToggleProps {
     sortOn: boolean;
     toggleSort: React.ChangeEventHandler<HTMLInputElement>;
+}
+
+export interface ThemeColor {
+    color: string;
+    active: boolean
+}
+
+interface ColorProps {
+    handleChange: React.ChangeEventHandler<HTMLInputElement>;
+}
+
+export interface ColorDotProps extends ColorProps {
+    themeColor: ThemeColor;
+}
+
+export interface ColorDotListProps extends ColorProps {
+    themeColors: ThemeColor[];
+}
+
+export type ThemeMode = typeof THEME_MODES[keyof typeof THEME_MODES];
+
+export interface ThemeButtonsProps {
+    themeMode: ThemeMode;
+    setMode: (mode: ThemeMode) => void;
+}
+
+export interface ThemePaletteProps {
+    paletteOpen: boolean;
+    themeColors: ThemeColor[];
+    themeMode: ThemeMode;
+    togglePaletteOpen: () => void;
+    handleChangeColor: ColorProps['handleChange'];
+    setMode: ThemeButtonsProps['setMode'];
 }
