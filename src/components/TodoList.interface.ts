@@ -1,5 +1,5 @@
 import React from "react";
-import { ICONS, THEME_MODES } from "./constants";
+import { ICONS, THEME_MODES, THEME_COLORS } from "./constants";
 
 export interface NewTask {
     text: string;
@@ -51,7 +51,7 @@ export interface SortToggleProps {
 }
 
 export interface ThemeColor {
-    color: string;
+    color: typeof THEME_COLORS[keyof typeof THEME_COLORS];
     active: boolean
 }
 

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import 'normalize.css';
 import './styles/index.scss';
 
-import TodoList from './components/Todo/TodoList';
+import TodoList from './components/TodoList';
 
 const root = ReactDOM.createRoot(
   document.querySelector('#root') as HTMLElement

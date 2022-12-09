@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import Icon from './Icon';
+import Icon from '../Icon';
 
-import { TaskItemProps } from './TodoList.interface';
-import { ICONS } from './constants';
+import { TaskItemProps } from '../TodoList.interface';
+import { ICONS } from '../constants';
 
 export default function TaskItem(props: TaskItemProps) {
   const { task, toggleComplete, removeTask, toggleEditOn, handleChange } = props;

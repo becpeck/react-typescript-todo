@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
-import { useTaskState, useSortState, useThemeColorState, useThemeModeState } from '../../hooks/useLocalStorage';
+import { useTaskState, useSortState, useThemeColorState, useThemeModeState } from '../hooks/useLocalStorage';
 
-import TaskButtons from './TaskButtons';
-import TaskItemList from './TaskItemList';
+import TaskButtons from './ListControl/TaskButtons';
+import TaskItemList from './TaskItem/TaskItemList';
 import TaskInput from './TaskInput';
-import SortToggle from './SortToggle';
+import SortToggle from './ListControl/SortToggle';
 import ThemePalette from './ThemePalette/ThemePalette';
 
 import { Task, ThemeColor, ThemeMode } from './TodoList.interface';
 
-import { sampleTasks, initialNewTaskInput, initialThemeColors, initialThemeMode, THEME_MODES } from './constants';
+import { THEME_MODES } from './constants';
+import initialState from './initialState';
 
 
 export default function TodoList() {
-  const [tasks, setTasks] = useTaskState(sampleTasks)
-  const [newTaskInput, setNewTaskInput] = useState(initialNewTaskInput);
+  const [tasks, setTasks] = useTaskState(initialState.tasks)
+  const [newTaskInput, setNewTaskInput] = useState(initialState.taskInput);
   const [sortOn, setSortOn] = useSortState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
-  const [themeColors, setThemeColors] = useThemeColorState(initialThemeColors);
-  const [themeMode, setThemeMode] = useThemeModeState(initialThemeMode);
+  const [themeColors, setThemeColors] = useThemeColorState(initialState.themeColors);
+  const [themeMode, setThemeMode] = useThemeModeState(initialState.themeMode);
 
 
   useEffect(() => {
@@ -129,7 +130,7 @@ export default function TodoList() {
     const newTask: Task = {id: uuid(), text: newTaskInput.text, completed: false, editOn: false}
     const updatedTasks = sortOn ? sortTask(newTask, [...tasks]) : [...tasks, newTask]
     setTasks(updatedTasks)
-    setNewTaskInput(initialNewTaskInput)
+    setNewTaskInput(initialState.taskInput)
   }
 
 
