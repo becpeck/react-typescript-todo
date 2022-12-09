@@ -8,21 +8,23 @@
 }
 
 [data-theme-mode='light'] {
-  &[data-theme-color='red']     { @include apply-theme(light, red); }
-  &[data-theme-color='yellow']  { @include apply-theme(light, yellow); }
-  &[data-theme-color='green']   { @include apply-theme(light, green); }
-  &[data-theme-color='blue']    { @include apply-theme(light, blue); }
-  &[data-theme-color='violet']  { @include apply-theme(light, violet); }
-  &[data-theme-color='gray']    { @include apply-theme(light, gray); }
+  $theme-colors: map-keys($color-shifts);
+
+  @each $color-name, $color-value in $theme-colors {
+    &[data-theme-color=#{'' + $color-name}] {
+      @include apply-theme(light, $color-name);
+    }
+  }
 }
 
 [data-theme-mode='dark'] {
-  &[data-theme-color='red']     { @include apply-theme(dark, red); }
-  &[data-theme-color='yellow']  { @include apply-theme(dark, yellow); }
-  &[data-theme-color='green']   { @include apply-theme(dark, green); }
-  &[data-theme-color='blue']    { @include apply-theme(dark, blue); }
-  &[data-theme-color='violet']  { @include apply-theme(dark, violet); }
-  &[data-theme-color='gray']    { @include apply-theme(dark, gray); }
+  $theme-colors: map-keys($color-shifts);
+
+  @each $color-name, $color-value in $theme-colors {
+    &[data-theme-color=#{'' + $color-name}] {
+      @include apply-theme(dark, $color-name);
+    }
+  }
 }
 
 button {
