@@ -1,26 +1,25 @@
 import React from 'react';
-
 import { ThemeColor, ThemeMode, Task, NewTask } from './types';
 import { ICONS } from './constants';
 
-interface ColorProps {
+type BaseColorDotProps = {
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export interface ColorDotProps extends ColorProps {
+export type ColorDotProps = BaseColorDotProps & {
     themeColor: ThemeColor;
 }
 
-export interface ColorDotListProps extends ColorProps {
+export type ColorDotListProps = BaseColorDotProps & {
     themeColors: ThemeColor[];
 }
 
-export interface ThemeButtonsProps {
+export type ThemeButtonsProps = {
     themeMode: ThemeMode;
     setMode: (mode: ThemeMode) => void;
 }
 
-export interface ThemePaletteProps {
+export type ThemePaletteProps = {
     paletteOpen: boolean;
     themeColors: ThemeColor[];
     themeMode: ThemeMode;
@@ -29,39 +28,39 @@ export interface ThemePaletteProps {
     setMode: ThemeButtonsProps['setMode'];
 }
 
-export interface SortToggleProps {
+export type SortToggleProps = {
     sortOn: boolean;
     toggleSort: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export interface TaskButtonsProps {
+export type TaskButtonsProps = {
     tasks: Task[];
     checkAll: () => void;
     uncheckAll: () => void;
     removeAll: () => void;
 }
 
-export interface IconProps {
-    variant: typeof ICONS[keyof typeof ICONS]
+export type IconProps = {
+    variant: typeof ICONS[keyof typeof ICONS];
     handleClick?: () => void;
 }
 
-interface TaskProps {
+type BaseTaskProps = {
     toggleComplete: (id: Task['id']) => void;
     removeTask: (id: Task['id']) => void;
     toggleEditOn: (id: Task['id']) => void;
     handleChange: (id: Task['id']) => React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export interface TaskItemProps extends TaskProps {
+export type TaskItemProps = BaseTaskProps & {
     task: Task;
 }
   
-export interface TaskItemListProps extends TaskProps {
+export type TaskItemListProps = BaseTaskProps & {
     tasks: Task[];
 }
 
-export interface TaskInputProps {
+export type TaskInputProps = {
     newTaskInput: NewTask;
     toggleEditOn: () => void;
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
