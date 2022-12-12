@@ -1,7 +1,11 @@
 import React from 'react';
 import ColorDot from './ColorDot';
+import { ThemeColor } from '../types';
 
-import { ColorDotListProps } from '../props';
+type ColorDotListProps =  {
+    themeColors: ThemeColor[];
+    handleChange: React.ChangeEventHandler<HTMLInputElement>;
+}
 
 export default function ColorDotList(props: ColorDotListProps) {
     const { themeColors, handleChange } = props;

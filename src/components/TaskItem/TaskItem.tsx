@@ -1,8 +1,15 @@
 import React, { useRef } from 'react';
 import Icon from '../Icon';
-
-import { TaskItemProps } from '../props';
+import { Task } from '../types';
 import { ICONS } from '../constants';
+
+type TaskItemProps = {
+  task: Task;
+  toggleComplete: (id: Task['id']) => void;
+  removeTask: (id: Task['id']) => void;
+  toggleEditOn: (id: Task['id']) => void;
+  handleChange: (id: Task['id']) => React.ChangeEventHandler<HTMLInputElement>;
+}
 
 export default function TaskItem(props: TaskItemProps) {
   const { task, toggleComplete, removeTask, toggleEditOn, handleChange } = props;

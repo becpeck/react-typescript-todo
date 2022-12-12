@@ -4,7 +4,16 @@ import { Palette } from 'react-bootstrap-icons';
 import ColorDotList from './ColorDotList';
 import ThemeButtons from './ThemeButtons';
 
-import { ThemePaletteProps } from '../props';
+import { ThemeColor, ThemeMode } from '../types';
+
+type ThemePaletteProps = {
+    paletteOpen: boolean;
+    themeColors: ThemeColor[];
+    themeMode: ThemeMode;
+    togglePaletteOpen: () => void;
+    handleChangeColor: React.ChangeEventHandler<HTMLInputElement>;
+    setMode: (mode: ThemeMode) => void;
+}
 
 export default function ThemePalette(props: ThemePaletteProps) {
     const { paletteOpen, themeColors, themeMode, togglePaletteOpen, handleChangeColor, setMode } = props;

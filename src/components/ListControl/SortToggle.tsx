@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { SortToggleProps } from '../props';
+type SortToggleProps = {
+  sortOn: boolean;
+  toggleSort: React.ChangeEventHandler<HTMLInputElement>;
+}
 
 export default function SortToggle(props: SortToggleProps) {
   const { sortOn, toggleSort } = props;

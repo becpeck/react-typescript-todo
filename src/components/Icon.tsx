@@ -1,8 +1,11 @@
 import React from 'react';
 import { Square, CheckSquare, Pencil, XLg, PlusLg } from 'react-bootstrap-icons';
-
-import { IconProps } from './props';
 import { ICONS } from './constants';
+
+type IconProps = {
+    variant: typeof ICONS[keyof typeof ICONS];
+    handleClick?: () => void;
+}
 
 export default function Icon(props: IconProps) {
     const { variant, handleClick } = props;

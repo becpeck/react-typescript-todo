@@ -1,7 +1,11 @@
 import React from 'react';
-
-import { ThemeButtonsProps } from '../props';
+import { ThemeMode } from '../types';
 import { THEME_MODES } from '../constants';
+
+type ThemeButtonsProps = {
+    themeMode: ThemeMode;
+    setMode: (mode: ThemeMode) => void;
+}
 
 export default function ThemeButtons(props: ThemeButtonsProps) {
     const { themeMode, setMode } = props;

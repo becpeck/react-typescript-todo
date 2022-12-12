@@ -1,6 +1,12 @@
 import React from 'react';
+import { Task } from '../types';
 
-import { TaskButtonsProps } from '../props';
+type TaskButtonsProps = {
+  tasks: Task[];
+  checkAll: () => void;
+  uncheckAll: () => void;
+  removeAll: () => void;
+}
 
 export default function TaskButtons(props: TaskButtonsProps) {
   const { tasks, checkAll, uncheckAll, removeAll } = props;

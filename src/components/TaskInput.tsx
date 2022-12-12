@@ -1,8 +1,14 @@
 import React, { useRef } from 'react';
 import Icon from './Icon';
-
-import { TaskInputProps } from './props';
+import { NewTask } from './types';
 import { ICONS } from './constants';
+
+type TaskInputProps = {
+  newTaskInput: NewTask;
+  toggleEditOn: () => void;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+  addNewTask: () => void;
+}
 
 export default function TaskInput(props: TaskInputProps) {
   const { text, editOn } = props.newTaskInput;
