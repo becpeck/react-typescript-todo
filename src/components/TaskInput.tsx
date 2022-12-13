@@ -6,13 +6,14 @@ import { ICONS } from './constants';
 type TaskInputProps = {
   newTaskInput: NewTask;
   toggleEditOn: () => void;
+  resetInput: () => void;
   handleChange: React.ChangeEventHandler<HTMLInputElement>;
   addNewTask: () => void;
 }
 
 export default function TaskInput(props: TaskInputProps) {
   const { text, editOn } = props.newTaskInput;
-  const { toggleEditOn, handleChange, addNewTask } = props;
+  const { toggleEditOn, resetInput, handleChange, addNewTask } = props;
 
   const activeInput = useRef<HTMLInputElement>(null);
   const form = useRef<HTMLFormElement>(null);
@@ -26,17 +27,18 @@ export default function TaskInput(props: TaskInputProps) {
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    activeInput.current!.blur()
-    if (text.length > 0) {  // TODO: Strip text
-      addNewTask()
+    activeInput.current!.blur();
+    if (text.trim().length > 0) {
+      addNewTask();
     }
   }
 
   const handleBlur = (evt: React.FocusEvent<HTMLInputElement>) => {
-    if (text.length > 0) {  // TODO: Strip text
-      form.current!.requestSubmit()
+    if (text.trim().length > 0) {
+      form.current!.requestSubmit();
     } else {
-      toggleEditOn()
+      toggleEditOn();
+      resetInput();
     }
   }
 
@@ -55,7 +57,7 @@ export default function TaskInput(props: TaskInputProps) {
         ? <Icon variant={ICONS.NO_ICON} />
         : <Icon variant={ICONS.PENCIL} handleClick={handlePencilClick} />
       }
-      { editOn && text.length > 0
+      { editOn && text.trim().length > 0
         ? <Icon variant={ICONS.PLUS}/>
         : <Icon variant={ICONS.NO_ICON} />
       }

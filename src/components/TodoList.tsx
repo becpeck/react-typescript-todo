@@ -118,7 +118,11 @@ export default function TodoList() {
 
   // Input state functions
   const toggleEditInput = () => {
-    setNewTaskInput({...newTaskInput, editOn: !newTaskInput.editOn})
+    setNewTaskInput({...newTaskInput, editOn: !newTaskInput.editOn});
+  }
+
+  const resetTaskInput = () => {
+    setNewTaskInput(initialState.taskInput);
   }
 
   const handleChangeInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,10 +131,10 @@ export default function TodoList() {
   }
 
   const addNewTask = () => {
-    const newTask: Task = {id: uuid(), text: newTaskInput.text, completed: false, editOn: false}
-    const updatedTasks = sortOn ? sortTask(newTask, [...tasks]) : [...tasks, newTask]
-    setTasks(updatedTasks)
-    setNewTaskInput(initialState.taskInput)
+    const newTask: Task = {id: uuid(), text: newTaskInput.text.trim(), completed: false, editOn: false};
+    const updatedTasks = sortOn ? sortTask(newTask, [...tasks]) : [...tasks, newTask];
+    setTasks(updatedTasks);
+    resetTaskInput();
   }
 
 
@@ -191,6 +195,7 @@ export default function TodoList() {
         <TaskInput 
           newTaskInput={newTaskInput}
           toggleEditOn={toggleEditInput}
+          resetInput={resetTaskInput}
           handleChange={handleChangeInput}
           addNewTask={addNewTask}
         />
