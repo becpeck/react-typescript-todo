@@ -164,7 +164,7 @@ export default function TodoList() {
 
 
   return (
-    <div className='widget-todo container'>
+    <div className='container'>
       <ThemePalette
         paletteOpen={paletteOpen}
         themeColors={themeColors}

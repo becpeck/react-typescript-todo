@@ -18,7 +18,11 @@ export default function TaskInput(props: TaskInputProps) {
   const activeInput = useRef<HTMLInputElement>(null);
   const form = useRef<HTMLFormElement>(null);
 
-  const getEditOnClass = () => editOn ? 'edit' : '';
+  const getEditOnClass = () => (editOn ? 'edit' : '');
+
+  const getClassName = (classNames: string[]) => (
+    classNames.filter(className => className !== '').join(' ')
+  );
 
   const handlePencilClick = () => {
     toggleEditOn();
@@ -42,15 +46,19 @@ export default function TaskInput(props: TaskInputProps) {
     }
   }
 
-  return ( // TODO: fix className whitespace
-    <form className={`item-line task-input ${getEditOnClass()}`} ref={form} onSubmit={handleSubmit}>
+  return (
+    <form
+      className={getClassName(['item-line', 'task-input', getEditOnClass()])}
+      ref={form}
+      onSubmit={handleSubmit}
+    >
       <Icon variant={ICONS.EMPTY_BOX} />
       <input
         type='text'
         value={text}
         onChange={handleChange}
         ref={activeInput}
-        className={`item-text`}
+        className='item-text'
         onBlur={handleBlur}
       />
       { editOn

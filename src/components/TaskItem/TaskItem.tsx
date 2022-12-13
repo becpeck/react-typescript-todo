@@ -20,6 +20,10 @@ export default function TaskItem(props: TaskItemProps) {
 
   const getEditOnClass = () => (task.editOn ? 'edit' : '');
 
+  const getClassName = (classNames: string[]) => (
+    classNames.filter(className => className !== '').join(' ')
+  );
+
   const toggleFocus = () => {
     if (task.editOn) {
       activeInput.current!.blur()
@@ -34,8 +38,11 @@ export default function TaskItem(props: TaskItemProps) {
     toggleFocus();
   }
 
-  return ( // TODO: fix className whitespace
-    <form className={`item-line ${getCompleteClass()} ${getEditOnClass()}`} onSubmit={handleSubmit}>
+  return (
+    <form
+      className={getClassName(['item-line', getCompleteClass(), getEditOnClass()])}
+      onSubmit={handleSubmit}
+    >
       <Icon
         variant={task.completed ? ICONS.CHECKED_BOX : ICONS.EMPTY_BOX}
         handleClick={() => toggleComplete(task.id)}
@@ -45,7 +52,7 @@ export default function TaskItem(props: TaskItemProps) {
         value={task.text}
         onChange={handleChange(task.id)}
         ref={activeInput}
-        className={`item-text ${getCompleteClass()}`}
+        className='item-text'
         readOnly={!task.editOn}
         onBlur={toggleFocus}
       />

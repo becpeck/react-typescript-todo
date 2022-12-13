@@ -78,7 +78,11 @@ body {
       .item-line {
         @include flex($justify: space-between, $align: center, $gap: 0.25rem);
   
-        &.complete { color: var(--text-dimmed); }
+        &.complete { 
+          color: var(--text-dimmed);
+
+          .item-text { text-decoration: line-through; }
+        }
   
         &.edit .item-text { background-color: var(--element-highlight); }
         
@@ -100,8 +104,6 @@ body {
           outline: none;
           color: inherit;
           background-color: inherit;
-  
-          &.complete { text-decoration: line-through; }
         }
       }
   
