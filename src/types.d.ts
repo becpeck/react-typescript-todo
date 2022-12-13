@@ -1,4 +1,4 @@
-import { THEME_MODES, THEME_COLORS } from "./constants";
+import { THEME_MODES, THEME_COLORS } from "./components/constants";
 
 export type ThemeColor = {
     color: typeof THEME_COLORS[keyof typeof THEME_COLORS];

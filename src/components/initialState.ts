@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { ThemeMode, ThemeColor, NewTask, Task } from './types';
+import { ThemeMode, ThemeColor, NewTask, Task } from '../types';
 import { THEME_COLORS, THEME_MODES } from './constants';
 
 const themeColors: ThemeColor[] = [

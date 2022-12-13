@@ -4,7 +4,7 @@ import { Palette } from 'react-bootstrap-icons';
 import ColorDotList from './ColorDotList';
 import ThemeButtons from './ThemeButtons';
 
-import { ThemeColor, ThemeMode } from '../types';
+import { ThemeColor, ThemeMode } from '../../types';
 
 type ThemePaletteProps = {
     paletteOpen: boolean;

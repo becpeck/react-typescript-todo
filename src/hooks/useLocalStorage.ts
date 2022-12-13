@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Task, ThemeColor, ThemeMode } from '../components/types';
+import { Task, ThemeColor, ThemeMode } from '../types';
 import { KEYS } from './constants';
 import {
     Key,

@@ -1,6 +1,6 @@
 import React from 'react';
 import ColorDot from './ColorDot';
-import { ThemeColor } from '../types';
+import { ThemeColor } from '../../types';
 
 type ColorDotListProps =  {
     themeColors: ThemeColor[];

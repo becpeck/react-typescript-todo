@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import Icon from './Icon';
-import { NewTask } from './types';
+import { NewTask } from '../types';
 import { ICONS } from './constants';
 
 type TaskInputProps = {

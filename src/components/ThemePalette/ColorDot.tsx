@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeColor } from '../types';
+import { ThemeColor } from '../../types';
 
 type ColorDotProps = {
     themeColor: ThemeColor;

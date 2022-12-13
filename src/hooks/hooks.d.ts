@@ -1,4 +1,4 @@
-import { Task } from '../components/types';
+import { Task } from '../types';
 import { KEYS } from './constants';
 
 export type Key = typeof KEYS[keyof typeof KEYS];

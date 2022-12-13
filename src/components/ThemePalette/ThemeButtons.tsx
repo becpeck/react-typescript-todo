@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeMode } from '../types';
+import { ThemeMode } from '../../types';
 import { THEME_MODES } from '../constants';
 
 type ThemeButtonsProps = {

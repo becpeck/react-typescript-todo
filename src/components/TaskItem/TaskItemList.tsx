@@ -1,6 +1,6 @@
 import React from 'react';
 import TaskItem from './TaskItem';
-import { Task } from '../types';
+import { Task } from '../../types';
 
 type TaskItemListProps = {
   tasks: Task[];
