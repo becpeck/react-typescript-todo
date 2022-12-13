@@ -16,18 +16,16 @@ export default function TaskItemList(props: TaskItemListProps) {
   return(
     <div id='task-list'>
       {
-        tasks.map((task: Task) => {
-          return (
-            <TaskItem
-              key={task.id}
-              task={task} 
-              toggleComplete={toggleComplete} 
-              removeTask={removeTask}
-              toggleEditOn={toggleEditOn}
-              handleChange={handleChange}
-            />
-          );
-        })
+        tasks.map((task: Task) => (
+          <TaskItem
+            key={task.id}
+            task={task} 
+            toggleComplete={toggleComplete} 
+            removeTask={removeTask}
+            toggleEditOn={toggleEditOn}
+            handleChange={handleChange}
+          />
+        ))
       }
     </div>
   );

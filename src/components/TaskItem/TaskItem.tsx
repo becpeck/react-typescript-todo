@@ -17,7 +17,6 @@ export default function TaskItem(props: TaskItemProps) {
   const activeInput = useRef<HTMLInputElement>(null);
 
   const getCompleteClass = () => (task.completed ? 'complete' : '');
-
   const getEditOnClass = () => (task.editOn ? 'edit' : '');
 
   const getClassName = (classNames: string[]) => (
@@ -26,11 +25,11 @@ export default function TaskItem(props: TaskItemProps) {
 
   const toggleFocus = () => {
     if (task.editOn) {
-      activeInput.current!.blur()
+      activeInput.current!.blur();
     } else {
-      activeInput.current!.focus()
+      activeInput.current!.focus();
     }
-    toggleEditOn(task.id)
+    toggleEditOn(task.id);
   }
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {

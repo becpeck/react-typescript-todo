@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
-import { useTasksState, useSortState, useThemeColorState, useThemeModeState } from '../hooks/useLocalStorage';
+import { useThemeColorState, useThemeModeState, useSortState, useTasksState  } from '../hooks/useLocalStorage';
 
+import ThemePalette from './ThemePalette/ThemePalette';
+import SortToggle from './ListControl/SortToggle';
 import TaskButtons from './ListControl/TaskButtons';
 import TaskItemList from './TaskItem/TaskItemList';
 import TaskInput from './TaskInput';
-import SortToggle from './ListControl/SortToggle';
-import ThemePalette from './ThemePalette/ThemePalette';
 
-import { Task, ThemeColor, ThemeMode } from '../types';
+import { ThemeColor, ThemeMode, Task } from '../types';
 
 import { THEME_MODES } from './constants';
 import initialState from './initialState';
 
 
 export default function TodoList() {
-  const [tasks, setTasks] = useTasksState(initialState.tasks)
-  const [newTaskInput, setNewTaskInput] = useState(initialState.taskInput);
-  const [sortOn, setSortOn] = useSortState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [themeColors, setThemeColors] = useThemeColorState(initialState.themeColors);
   const [themeMode, setThemeMode] = useThemeModeState(initialState.themeMode);
+  const [sortOn, setSortOn] = useSortState(false);
+  const [tasks, setTasks] = useTasksState(initialState.tasks);
+  const [newTaskInput, setNewTaskInput] = useState(initialState.taskInput);
 
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function TodoList() {
   useEffect(() => {
     const mode = getModeTag(themeMode);
     document.body.setAttribute('data-theme-mode', mode);
-  }, [themeMode])
+  }, [themeMode]);
 
 
   // useEffect helper functions
@@ -88,11 +88,11 @@ export default function TodoList() {
         : task;
     });
     if (sortOn) {
-      const [ toggledTask ] = updatedTasks.filter((task) => task.id === id)
-      updatedTasks = updatedTasks.filter((task) => task.id !== id)
-      updatedTasks = sortTask(toggledTask, updatedTasks)
+      const [ toggledTask ] = updatedTasks.filter((task) => task.id === id);
+      updatedTasks = updatedTasks.filter((task) => task.id !== id);
+      updatedTasks = sortTask(toggledTask, updatedTasks);
     }
-    setTasks(updatedTasks)
+    setTasks(updatedTasks);
   }
 
   const removeTask = (id: Task['id']) => {
@@ -140,25 +140,25 @@ export default function TodoList() {
 
   // Sort state functions
   const toggleSort = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setSortOn(evt.target.checked)
+    setSortOn(evt.target.checked);
     if (evt.target.checked) {
-      sortTasks()
+      sortTasks();
     }
   }
 
   const sortTasks = () => {
-    const completed = tasks.filter((task) => task.completed)
-    const uncompleted = tasks.filter((task) => !(task.completed))
-    setTasks(uncompleted.concat(completed))
+    const completed = tasks.filter((task) => task.completed);
+    const uncompleted = tasks.filter((task) => !(task.completed));
+    setTasks(uncompleted.concat(completed));
   }
 
   const sortTask = (targetTask: Task, otherTasks: Task[]): Task[] => {
     if (!targetTask.completed && otherTasks.every((task) => task.completed)) {
-      return [targetTask].concat(otherTasks)
+      return [targetTask].concat(otherTasks);
     } else {
-      const completed = otherTasks.filter((task) => task.completed)
-      const uncompleted = otherTasks.filter((task) => !(task.completed))
-      return uncompleted.concat(targetTask, completed)
+      const completed = otherTasks.filter((task) => task.completed);
+      const uncompleted = otherTasks.filter((task) => !(task.completed));
+      return uncompleted.concat(targetTask, completed);
     }
   }
 
