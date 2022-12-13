@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
-import { useTaskState, useSortState, useThemeColorState, useThemeModeState } from '../hooks/useLocalStorage';
+import { useTasksState, useSortState, useThemeColorState, useThemeModeState } from '../hooks/useLocalStorage';
 
 import TaskButtons from './ListControl/TaskButtons';
 import TaskItemList from './TaskItem/TaskItemList';
@@ -15,7 +15,7 @@ import initialState from './initialState';
 
 
 export default function TodoList() {
-  const [tasks, setTasks] = useTaskState(initialState.tasks)
+  const [tasks, setTasks] = useTasksState(initialState.tasks)
   const [newTaskInput, setNewTaskInput] = useState(initialState.taskInput);
   const [sortOn, setSortOn] = useSortState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);

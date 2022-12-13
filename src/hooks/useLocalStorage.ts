@@ -4,7 +4,7 @@ import { KEYS } from './constants';
 import {
     Key,
     UseLocalStorage,
-    UseTaskState,
+    UseTasksState,
     UseSortState,
     UseThemeColorState,
     UseThemeModeState
@@ -25,9 +25,37 @@ function useLocalStorage<T>(key: Key, initialValue: T): UseLocalStorage<T> {
     return [storedValue, setValue];
 }
 
+export function useTasksState(initialTasks: Task[]): UseTasksState {
+    const [storedTasks, setStoredTasks] = useState<Task[]>(() => {
+        const tasks = window.localStorage.getItem(KEYS.TASKS);
+        if (!tasks) {
+            return initialTasks;
+        } else {
+            const parsed: Omit<Task, 'editOn'>[] = JSON.parse(tasks);
+            const includedTasks: Task[] = parsed.map(excludedTask => ({...excludedTask, editOn: false}));
+            return includedTasks;
+        }
+    })
 
-export function useTaskState(initialTasks: Task[]): UseTaskState {
-    return useLocalStorage<Task[]>(KEYS.TASKS, initialTasks);
+    const setTasks = (tasks: Task[]) => {
+        const lastStoredTasks = storedTasks;
+        setStoredTasks(tasks);
+        if (tasks.length !== lastStoredTasks.length || 
+            tasks.some((task, i) => (
+                task.id !== lastStoredTasks[i].id 
+                    || task.completed !== lastStoredTasks[i].completed 
+                    || task.text !== lastStoredTasks[i].text
+            ))
+        ) {
+            const excludedTasks: Omit<Task, 'editOn'>[] = tasks.map(task => {
+                const { editOn, ...excludedTask } = task;
+                return excludedTask;
+            })
+            window.localStorage.setItem(KEYS.TASKS, JSON.stringify(excludedTasks));
+        }
+    }
+
+    return [storedTasks, setTasks];
 }
 
 export function useSortState(initialSortOn: boolean): UseSortState {
