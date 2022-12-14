@@ -1,46 +1,9 @@
-# Getting Started with Create React App
+# React Typescript Todo List
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A todo list app with a clean, minimalist look built in React with Typescript and styled with SASS.
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img width="375" alt="mobile_red_palette_light_edit_unsort" src="https://user-images.githubusercontent.com/49978356/207486368-723dca07-404d-47b2-9bad-bfcea1985dd3.png">
+<img width="375" alt="mobile_blue_palette_dark_edit_unsort_unchecked" src="https://user-images.githubusercontent.com/49978356/207486404-94d1b100-9781-4cba-a186-42e00b2cdeee.png">
+<img width="375" alt="mobile_green_light_edit_sort" src="https://user-images.githubusercontent.com/49978356/207486454-123031a4-dc67-4f56-94ef-e5e74e6d1d00.png">
+<img width="375" alt="mobile_purple_dark_edit_sort" src="https://user-images.githubusercontent.com/49978356/207486457-5c22fdb1-3465-4d42-a763-81f53c017c5a.png">
+<img width="1440" alt="desktop_yellow_palette_light_sort" src="https://user-images.githubusercontent.com/49978356/207486463-b5eae2e3-9f62-40d2-8bf0-7a0cb80b14ad.png">
